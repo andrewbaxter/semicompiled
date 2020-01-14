@@ -53,7 +53,7 @@ def do_java(out):
     tmp_ctx = tempfile.TemporaryDirectory()
     tmp = Path(tmp_ctx.name)
 
-    targets = ['6']
+    targets = ['8']
 
     class Example:
         def __init__(self, **kwargs):
