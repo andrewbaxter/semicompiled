@@ -86,7 +86,7 @@ def do_java(out):
             ))
 
     category_order = [
-        'Minimal',
+        'Basic',
         'Static',
         'Flow',
         'Math',
