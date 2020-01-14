@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: Empty class
 // Order: 100
 

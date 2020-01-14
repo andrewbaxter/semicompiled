@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: Number cast
 // Order: 1000
 

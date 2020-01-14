@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: Instance method
 // Order: 700
 

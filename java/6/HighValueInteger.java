@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: High value integer
 // Order: 350
 

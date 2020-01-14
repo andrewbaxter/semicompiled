@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: Mixed scope locals
 // Order: 400
 

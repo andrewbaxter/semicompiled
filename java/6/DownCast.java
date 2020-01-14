@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: Down cast
 // Order: 900
 

@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: Instantiation
 // Order: 600
 

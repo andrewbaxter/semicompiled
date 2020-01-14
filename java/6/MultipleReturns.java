@@ -1,4 +1,4 @@
-// Category: Minimal
+// Category: Basic
 // Title: Multiple return statements
 // Order: 800
 
