@@ -1,5 +1,3 @@
 # Semicompiled
 
-Bytecode/IR examples.
-
-Check it out at: https://semicompiled.gitl
+Bytecode/IR examples!  Read them at <https://rendaw.gitlab.io/semicompiled/>!

@@ -75,7 +75,7 @@ def do_java(out):
                     'javac', '-source', version.name, '-target', target, dest
                 ])
                 bytecode = subprocess.check_output([
-                    'javap', '-c', '-s', '-p', compiled
+                    'javap', '-c', '-s', '-p', '-l', '-constants', '-v', compiled
                 ]).decode('utf-8')
                 bytecodes[target] = bytecode
             categories[category].append(Example(
@@ -168,6 +168,11 @@ for title, name, method in generators:
         out.write('      hljs.initHighlightingOnLoad();\n')
         out.write('      hljs.initLineNumbersOnLoad();\n')
         out.write('    </script>\n')
+        out.write('    <style>\n')
+        out.write('      .hljs-ln-n {\n')
+        out.write('          margin-right: 1em;\n')
+        out.write('      }\n')
+        out.write('    </style>\n')
         out.write('  </head>\n')
         out.write('  <body>\n')
         out.write('\n')
