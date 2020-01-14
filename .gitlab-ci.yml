@@ -1,0 +1,18 @@
+---
+image: debian:10
+cache:
+  key: apt
+  paths:
+    - apt-cache/
+pages:
+  stage: deploy
+  script:
+    - export APT_CACHE_DIR=`pwd`/apt-cache
+    - mkdir -pv $APT_CACHE_DIR
+    - apt-get update && apt-get install -y openjdk-11-jdk python3
+    - python build.py
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
