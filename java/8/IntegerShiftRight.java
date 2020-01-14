@@ -1,4 +1,4 @@
-// Category: Math
+// Category: Operators
 // Title: Integer shift right
 // Order: 600
 

@@ -1,4 +1,4 @@
-// Category: Math
+// Category: Operators
 // Title: Integer multiply
 // Order: 300
 

@@ -87,9 +87,9 @@ def do_java(out):
 
     category_order = [
         'Basic',
-        'Static',
         'Flow',
-        'Math',
+        'Static',
+        'Operators',
     ]
     write_menu(
         out,

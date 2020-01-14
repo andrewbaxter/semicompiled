@@ -1,4 +1,4 @@
-// Category: Math
+// Category: Operators
 // Title: Integer intersect
 // Order: 700
 

@@ -1,6 +1,6 @@
-// Category: Basic
+// Category: Flow
 // Title: Multiple return statements
-// Order: 800
+// Order: 900
 
 public class MultipleReturns {
   public static boolean bool = 4 == 7;
@@ -9,7 +9,7 @@ public class MultipleReturns {
     if (bool) {
       return 5;
     } else {
-      if (bool) {
+      if (bool2) {
         return 12;
       }
     }
