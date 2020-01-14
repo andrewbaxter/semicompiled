@@ -90,7 +90,6 @@ def do_java(out):
         'Static',
         'Flow',
         'Math',
-        'Classes',
     ]
     write_menu(
         out,
@@ -164,7 +163,7 @@ for title, name, method in generators:
         out.write('    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>\n')
         out.write('    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/default.min.css">\n')
         out.write('    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>\n')
-        out.write('    <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>\n')
+        out.write('    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script>\n')
         out.write('    <script>\n')
         out.write('      hljs.initHighlightingOnLoad();\n')
         out.write('      hljs.initLineNumbersOnLoad();\n')

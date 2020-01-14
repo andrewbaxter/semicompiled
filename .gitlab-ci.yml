@@ -10,7 +10,7 @@ pages:
     - export APT_CACHE_DIR=`pwd`/apt-cache
     - mkdir -pv $APT_CACHE_DIR
     - apt-get update && apt-get install -y openjdk-11-jdk python3
-    - python build.py
+    - python3 build.py
   artifacts:
     paths:
       - public
