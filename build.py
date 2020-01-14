@@ -10,6 +10,8 @@ import html
 out_root = Path() / 'public'
 out_root.mkdir(exist_ok=True)
 
+java_filename = 'index.html'
+
 
 def get_regex(pattern, text, then=None):
     out = re.search(pattern, text, flags=re.M)
@@ -93,7 +95,7 @@ def do_java(out):
     ]
     write_menu(
         out,
-        'java.html',
+        java_filename,
         [[category, '#' + category] for category in category_order])
 
     out.write('<div class="column is-8">\n')
@@ -148,7 +150,7 @@ def do_java(out):
 
 
 generators = [
-    ('Java', 'java.html', do_java)
+    ('Java', java_filename, do_java)
 ]
 
 for title, name, method in generators:
