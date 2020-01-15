@@ -278,7 +278,7 @@ for title, name, method in generators:
 
 .hljs {
   background: none;
-  max-height: 90vh;
+  height: 90vh;
 }
     </style>
 ''')
