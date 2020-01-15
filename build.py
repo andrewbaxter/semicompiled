@@ -221,7 +221,7 @@ def do_java(out):
                     style = ''
                     first = False
                 bytecode = bytecodes[key]
-                out.write('<figure class="sc-output" data="{target}" style="{style}"><pre><code class="{language}">{text}</code></pre></figure>\n'.format(
+                out.write('<figure class="sc-output" data="{target}" style="{style} height: 90vh;"><pre><code class="{language}">{text}</code></pre></figure>\n'.format(
                     target=key,
                     style=style,
                     language=bytecode.language,
@@ -278,7 +278,7 @@ for title, name, method in generators:
 
 .hljs {
   background: none;
-  height: 90vh;
+  max-height: 90vh;
 }
     </style>
 ''')
