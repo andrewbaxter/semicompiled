@@ -37,9 +37,19 @@ def write_menu(out, name, children):
         ))
         if children:
             out.write('<ul>\n')
-            for child_name, child_link in children:
-                out.write('<li><a href="{}">{}</a></li>\n'.format(
+            for child_name, child_link, grandchildren in children:
+                out.write('<li>\n')
+                out.write('<a href="{}">{}</a>\n'.format(
                     child_link, child_name))
+                if grandchildren:
+                    out.write('<ul>\n')
+                    for grandchild_name, grandchild_link in grandchildren:
+                        out.write('<li>\n')
+                        out.write('<a href="{}">{}</a>\n'.format(
+                            grandchild_link, grandchild_name))
+                        out.write('</li>\n')
+                    out.write('</ul>\n')
+                out.write('</li>\n')
             out.write('</ul>\n')
         out.write('</li>\n')
     out.write('<li><a href="https://gitlab.com/rendaw/semicompiled">(gitlab)</a></li>\n')
@@ -81,6 +91,7 @@ def do_java(out):
                 ]).decode('utf-8')
                 bytecodes[target] = bytecode
             categories[category].append(Example(
+                id=example.stem,
                 title=get_regex('^// Title: (.*)$', source) or example.stem,
                 source=source,
                 bytecodes=bytecodes,
@@ -93,10 +104,28 @@ def do_java(out):
         'Static',
         'Operators',
     ]
+
+    for category in category_order:
+        categories[category] = sorted(categories[category], key=lambda e: e.order)
+
     write_menu(
         out,
         java_filename,
-        [[category, '#' + category] for category in category_order])
+        [
+            (
+                category,
+                '#' + category,
+                [
+                    (
+                        example.title,
+                        '#' + example.id,
+                    )
+                    for example in categories[category]
+                ],
+            )
+            for category in category_order
+        ],
+    )
 
     out.write('<div class="column is-8">\n')
     out.write('<section class="section">\n')
@@ -109,15 +138,17 @@ def do_java(out):
         examples = categories.pop(category)
         out.write('<section class="section">\n')
         out.write('<div class="container">\n')
-        out.write('<a name="{}" href="#{}"><h1 class="title">{}</h1></a>\n'.format(
-            category,
-            category,
-            category,
+        out.write('<h1 id="{link}" class="title bd-anchor-title"><span class="bd-anchor-name">{title}</span><a class="bd-anchor-link" href="#{link}">#</a></h1>\n'.format(
+            link=category,
+            title=category,
         ))
-        for example in sorted(examples, key=lambda e: e.order):
+        for example in examples:
             source = example.source
             bytecodes = example.bytecodes
-            out.write('<h2 class="title is-4">{}</h2>\n'.format(example.title))
+            out.write('<h2 id="link" class="title is-4 bd-anchor-title"><span class="bd-anchor-name">{title}</span><a class="bd-anchor-link" href="#{link}">#</a></h2>\n'.format(
+                link=example.id,
+                title=example.title,
+            ))
             out.write('<div class="columns">\n')
 
             out.write('<div class="column is-half">\n')
@@ -170,10 +201,22 @@ for title, name, method in generators:
         out.write('      hljs.initHighlightingOnLoad();\n')
         out.write('      hljs.initLineNumbersOnLoad();\n')
         out.write('    </script>\n')
-        out.write('    <style>\n')
-        out.write('      .hljs-ln-n {\n')
-        out.write('          margin-right: 1em;\n')
-        out.write('      }\n')
+        out.write('''    <style>
+.bd-anchor-title {
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+.bd-anchor-link {
+  position: absolute;
+  right: calc(100% + 1rem);
+  top: 1.5rem;
+}
+
+.hljs-ln-n {
+  margin-right: 1em;
+}
+    </style>''')
         out.write('    </style>\n')
         out.write('  </head>\n')
         out.write('  <body>\n')

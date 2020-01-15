@@ -1,5 +1,5 @@
 // Category: Basic
-// Title: High value integer
+// Title: High value integer literal
 // Order: 350
 
 public class HighValueInteger {
