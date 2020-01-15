@@ -185,7 +185,7 @@ def do_java(out):
         for example in examples:
             source = example.source
             bytecodes = example.bytecodes
-            out.write('<h2 id="link" class="title is-4 bd-anchor-title"><span class="bd-anchor-name">{title}</span><a class="bd-anchor-link" href="#{link}">#</a></h2>\n'.format(
+            out.write('<h2 id="{link}" class="title is-4 bd-anchor-title"><span class="bd-anchor-name">{title}</span><a class="bd-anchor-link" href="#{link}">#</a></h2>\n'.format(
                 link=example.id,
                 title=example.title,
             ))
