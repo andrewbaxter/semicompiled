@@ -215,6 +215,12 @@ for title, name, method in generators:
 
 .hljs-ln-n {
   margin-right: 1em;
+  color: steelblue;
+  opacity: 70%;
+}
+
+.hljs {
+  background: none;
 }
     </style>''')
         out.write('    </style>\n')
