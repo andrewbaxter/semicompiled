@@ -122,11 +122,13 @@ def do_java(out):
                 bytecodes[target] = Bytecode(
                     title='Java {}'.format(target),
                     text=decompile_normal(dest),
+                    language='plaintext',
                 )
                 if target == targets[-1]:
                     bytecodes['asm_{}'.format(target)] = Bytecode(
-                        title='{} - ASM'.format(target),
+                        title='Java {}/ASM'.format(target),
                         text=decompile_asm(dest),
+                        language='language-java',
                     )
             categories[category].append(Example(
                 id=example.stem,
@@ -218,10 +220,12 @@ def do_java(out):
                 if first:
                     style = ''
                     first = False
-                out.write('<figure class="sc-output" data="{target}" style="{style}"><pre><code class="plaintext">{text}</code></pre></figure>\n'.format(
+                bytecode = bytecodes[key]
+                out.write('<figure class="sc-output" data="{target}" style="{style}"><pre><code class="{language}">{text}</code></pre></figure>\n'.format(
                     target=key,
                     style=style,
-                    text=html.escape(bytecodes[key].text),
+                    language=bytecode.language,
+                    text=html.escape(bytecode.text),
                 ))
             out.write('</div>\n')  # column
 
@@ -274,6 +278,7 @@ for title, name, method in generators:
 
 .hljs {
   background: none;
+  max-height: 90vh;
 }
     </style>
 ''')
