@@ -7,6 +7,11 @@ import shutil
 import html
 
 
+here = Path()
+
+cache = here / 'semicache'
+cache.mkdir(exist_ok=True)
+
 out_root = Path() / 'public'
 out_root.mkdir(exist_ok=True)
 
@@ -60,6 +65,16 @@ def write_menu(out, name, children):
 
 
 def do_java(out):
+    asm_jar = 'asm-all-5.2.jar'
+    format_jar = 'google-java-format-1.7-all-deps.jar'
+    for parent, filename in [
+        ('https://repository.ow2.org/nexus/content/repositories/releases/org/ow2/asm/asm-all/5.2/', asm_jar),
+        ('https://github.com/google/google-java-format/releases/download/google-java-format-1.7/', format_jar),
+    ]:
+        if (cache / filename).exists():
+            continue
+        subprocess.check_call(['wget', parent + filename], cwd=cache)
+
     root = Path() / 'java'
 
     tmp_ctx = tempfile.TemporaryDirectory()
@@ -71,6 +86,24 @@ def do_java(out):
         def __init__(self, **kwargs):
             for k, v in kwargs.items():
                 setattr(self, k, v)
+
+    class Bytecode:
+        def __init__(self, **kwargs):
+            for k, v in kwargs.items():
+                setattr(self, k, v)
+
+    def decompile_normal(dest):
+        return subprocess.check_output([
+            'javap', '-c', '-s', '-p', '-l', '-constants', '-v', compiled
+        ]).decode('utf-8')
+
+    def decompile_asm(dest):
+        asm = subprocess.check_output([
+            'java', '-classpath', ':'.join(map(str, [cache / asm_jar, dest.parent])), 'org.objectweb.asm.util.ASMifier', dest.stem
+        ]).decode('utf-8')
+        return subprocess.check_output([
+            'java', '-jar', cache / format_jar, '-'
+        ], input=asm.encode('utf-8')).decode('utf-8')
 
     categories = defaultdict(lambda: [])
     for version in root.iterdir():
@@ -86,10 +119,15 @@ def do_java(out):
                 subprocess.check_call([
                     'javac', '-source', version.name, '-target', target, dest
                 ])
-                bytecode = subprocess.check_output([
-                    'javap', '-c', '-s', '-p', '-l', '-constants', '-v', compiled
-                ]).decode('utf-8')
-                bytecodes[target] = bytecode
+                bytecodes[target] = Bytecode(
+                    title='Java {}'.format(target),
+                    text=decompile_normal(dest),
+                )
+                if target == targets[-1]:
+                    bytecodes['asm_{}'.format(target)] = Bytecode(
+                        title='{} - ASM'.format(target),
+                        text=decompile_asm(dest),
+                    )
             categories[category].append(Example(
                 id=example.stem,
                 title=get_regex('^// Title: (.*)$', source) or example.stem,
@@ -161,14 +199,29 @@ def do_java(out):
             bc_keys = list(bytecodes.keys())
             out.write('<div class="tabs">\n')
             out.write('<ul>\n')
+            first = True
             for key in bc_keys:
-                out.write('<li data="tab-bytecode-{}">Java {}</li>\n'.format(
-                    key, key))
+                klass = ''
+                if first:
+                    klass = 'is-active'
+                    first = False
+                out.write('<li class="sc-output-link {klass}" data="{target}"><a>{title}</a></li>\n'.format(
+                    target=key,
+                    klass=klass,
+                    title=bytecodes[key].title,
+                ))
             out.write('</ul>\n')
             out.write('</div>\n')  # tabs
+            first = True
             for key in bc_keys:
-                out.write('<figure data="tab-bytecode-{}"><pre><code class="plaintext">{}</code></pre></figure>\n'.format(
-                    key, html.escape(bytecodes[key]),
+                style = 'display: none;'
+                if first:
+                    style = ''
+                    first = False
+                out.write('<figure class="sc-output" data="{target}" style="{style}"><pre><code class="plaintext">{text}</code></pre></figure>\n'.format(
+                    target=key,
+                    style=style,
+                    text=html.escape(bytecodes[key].text),
                 ))
             out.write('</div>\n')  # column
 
@@ -222,8 +275,33 @@ for title, name, method in generators:
 .hljs {
   background: none;
 }
-    </style>''')
+    </style>
+''')
         out.write('    </style>\n')
+        out.write('''    <script type="text/javascript">
+window.addEventListener('DOMContentLoaded', (e_) => {
+  for (let l of document.getElementsByClassName('sc-output-link')) (() => {
+      const target = l.getAttribute('data')
+      l.addEventListener('click', (e_) => {
+        for (let l2 of document.getElementsByClassName('sc-output-link')) {
+          if (l2.getAttribute('data') == target) {
+            l2.classList.add('is-active');
+          } else {
+            l2.classList.remove('is-active');
+          }
+        }
+        for (let t of document.getElementsByClassName('sc-output')) {
+          if (t.getAttribute('data') == target) {
+            t.style.display = '';
+          } else {
+            t.style.display = 'none';
+          }
+        }
+      })
+  })();
+});
+    </script>
+''')
         out.write('  </head>\n')
         out.write('  <body>\n')
         out.write('\n')

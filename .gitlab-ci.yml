@@ -4,12 +4,16 @@ cache:
   key: apt
   paths:
     - apt-cache/
+cache:
+  key: custom
+  paths:
+    - semicache/
 pages:
   stage: deploy
   script:
     - export APT_CACHE_DIR=`pwd`/apt-cache
     - mkdir -pv $APT_CACHE_DIR
-    - apt-get update && apt-get install -y openjdk-11-jdk python3
+    - apt-get update && apt-get install -y openjdk-11-jdk python3 wget
     - python3 build.py
   artifacts:
     paths:
