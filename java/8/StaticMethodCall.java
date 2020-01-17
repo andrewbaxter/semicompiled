@@ -2,8 +2,10 @@
 // Title: Static method call
 // Order: 300
 
+import java.util.Arrays;
+
 public class StaticMethodCall {
   public static void main(String[] args) {
-    System.out.println("hi");
+    Arrays.asList();
   }
 }

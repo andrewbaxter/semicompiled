@@ -2,7 +2,7 @@
 // Title: Static method definition
 // Order: 400
 
-public class StaticMethod {
+public class StaticMethodDefinition {
   public static void main(String[] args) {
   }
 }
