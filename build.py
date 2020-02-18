@@ -107,36 +107,38 @@ def do_java(out):
 
     categories = defaultdict(lambda: [])
     for version in root.iterdir():
-        for example in version.iterdir():
-            source = example.read_text()
-            category = get_regex('^// Category: (.*)$', source) or 'General'
-            dest = tmp / example.name
-            bytecodes = dict()
-            start_target = targets.index(version.name)
-            for target in targets[start_target:]:
-                compiled = tmp / (example.stem + '.class')
-                shutil.copy(example, dest)
-                subprocess.check_call([
-                    'javac', '-source', version.name, '-target', target, dest
-                ])
-                bytecodes[target] = Bytecode(
-                    title='Java {}'.format(target),
-                    text=decompile_normal(dest),
-                    language='plaintext',
-                )
-                if target == targets[-1]:
-                    bytecodes['asm_{}'.format(target)] = Bytecode(
-                        title='Java {}/ASM'.format(target),
-                        text=decompile_asm(dest),
-                        language='language-java',
+        for cat_order in version.iterdir():
+            category, order = cat_order.name.split('_')
+            order = int(order)
+            for example in cat_order.iterdir():
+                source = example.read_text()
+                dest = tmp / example.name
+                bytecodes = dict()
+                start_target = targets.index(version.name)
+                for target in targets[start_target:]:
+                    compiled = tmp / (example.stem + '.class')
+                    shutil.copy(example, dest)
+                    subprocess.check_call([
+                        'javac', '-source', version.name, '-target', target, dest
+                    ])
+                    bytecodes[target] = Bytecode(
+                        title='Java {}'.format(target),
+                        text=decompile_normal(dest),
+                        language='plaintext',
                     )
-            categories[category].append(Example(
-                id=example.stem,
-                title=get_regex('^// Title: (.*)$', source) or example.stem,
-                source=source,
-                bytecodes=bytecodes,
-                order=get_regex('^// Order: (.*)$', source, lambda m: int(m)) or 0,
-            ))
+                    if target == targets[-1]:
+                        bytecodes['asm_{}'.format(target)] = Bytecode(
+                            title='Java {}/ASM'.format(target),
+                            text=decompile_asm(dest),
+                            language='language-java',
+                        )
+                categories[category].append(Example(
+                    id=example.stem,
+                    title=get_regex('^// Title: (.*)$', source) or example.stem,
+                    source=source,
+                    bytecodes=bytecodes,
+                    order=order,
+                ))
 
     category_order = [
         'Basic',
