@@ -317,35 +317,34 @@ window.addEventListener('DOMContentLoaded', (e_) => {
                 otherbuild.title(),
             ))
             out.write('<ul>\n')
-            if build != otherbuild:
-                continue
-            for child_name, child_link, grandchildren in [
-                (
-                    category,
-                    '{}#{}'.format('' if build == otherbuild else otherbuild.filename(), category),
-                    [
-                        (
-                            example.title,
-                            '{}#{}'.format('' if build == otherbuild else otherbuild.filename(), example.id)
-                        )
-                        for example in otherbuild.categories()[category]
-                    ],
-                )
-                for category in otherbuild.category_order()
-            ]:
-                out.write('<li>\n')
-                out.write('<a href="{}">{}</a>\n'.format(
-                    child_link, child_name))
-                if grandchildren:
-                    out.write('<ul>\n')
-                    for grandchild_name, grandchild_link in grandchildren:
-                        out.write('<li>\n')
-                        out.write('<a href="{}">{}</a>\n'.format(
-                            grandchild_link, grandchild_name))
-                        out.write('</li>\n')
-                    out.write('</ul>\n')
-                out.write('</li>\n')
-            out.write('</ul>\n')
+            if build == otherbuild:
+                for child_name, child_link, grandchildren in [
+                    (
+                        category,
+                        '{}#{}'.format('' if build == otherbuild else otherbuild.filename(), category),
+                        [
+                            (
+                                example.title,
+                                '{}#{}'.format('' if build == otherbuild else otherbuild.filename(), example.id)
+                            )
+                            for example in otherbuild.categories()[category]
+                        ],
+                    )
+                    for category in otherbuild.category_order()
+                ]:
+                    out.write('<li>\n')
+                    out.write('<a href="{}">{}</a>\n'.format(
+                        child_link, child_name))
+                    if grandchildren:
+                        out.write('<ul>\n')
+                        for grandchild_name, grandchild_link in grandchildren:
+                            out.write('<li>\n')
+                            out.write('<a href="{}">{}</a>\n'.format(
+                                grandchild_link, grandchild_name))
+                            out.write('</li>\n')
+                        out.write('</ul>\n')
+                    out.write('</li>\n')
+                out.write('</ul>\n')
 
             out.write('</li>\n')
         out.write('<li><a href="https://gitlab.com/rendaw/semicompiled">(gitlab)</a></li>\n')
