@@ -316,8 +316,8 @@ window.addEventListener('DOMContentLoaded', (e_) => {
                 'is-active' if build == otherbuild else '',
                 otherbuild.title(),
             ))
-            out.write('<ul>\n')
             if build == otherbuild:
+                out.write('<ul>\n')
                 for child_name, child_link, grandchildren in [
                     (
                         category,
