@@ -99,7 +99,7 @@ def do_java(out):
 
     def decompile_asm(dest):
         asm = subprocess.check_output([
-            'java', '-classpath', ':'.join(map(str, [cache / asm_jar, dest.parent])), 'org.objectweb.asm.util.ASMifier', dest.stem
+            'java', '-classpath', ':'.join(map(str, [cache / asm_jar, dest.parent])), 'org.objectweb.asm.util.ASMifier', '-debug', dest.stem
         ]).decode('utf-8')
         return subprocess.check_output([
             'java', '-jar', cache / format_jar, '-'
@@ -140,8 +140,9 @@ def do_java(out):
 
     category_order = [
         'Basic',
-        'Flow',
         'Static',
+        'Instance',
+        'Flow',
         'Operators',
     ]
 

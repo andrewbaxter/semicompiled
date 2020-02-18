@@ -1,5 +1,5 @@
-// Category: Basic
-// Title: Instance method
+// Category: Instance
+// Title: Method
 // Order: 700
 
 public class InstanceMethod {

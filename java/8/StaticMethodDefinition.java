@@ -1,8 +1,8 @@
 // Category: Static
-// Title: Static method definition
+// Title: Method definition
 // Order: 400
 
 public class StaticMethodDefinition {
-  public static void main(String[] args) {
+  public static void myMethod() {
   }
 }

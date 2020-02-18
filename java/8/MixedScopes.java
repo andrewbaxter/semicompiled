@@ -1,5 +1,5 @@
 // Category: Basic
-// Title: Mixed scope locals
+// Title: Mixed-scope locals
 // Order: 400
 
 public class MixedScopes {

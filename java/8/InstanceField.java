@@ -1,6 +1,6 @@
-// Category: Basic
-// Title: Instance field
-// Order: 710
+// Category: Instance
+// Title: Field read/write
+// Order: 900
 
 public class InstanceField {
   public String a;
@@ -9,7 +9,7 @@ public class InstanceField {
     this.a = "hi";
   }
 
-  public static void main(String[] args) {
+  public static void myMethod() {
     InstanceField instance = new InstanceField();
     System.out.println(instance.a);
   }
