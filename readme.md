@@ -7,6 +7,6 @@ Bytecode/IR examples!  Read them at <https://rendaw.gitlab.io/semicompiled/>!
 * Java - Boolean operators
 * Java - More if conditions
 * Java - Lambda
-* Java - Method reference
 * LLVM - C IR
 * LLVM - C++ IR
+* Webassembly
