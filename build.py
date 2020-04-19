@@ -215,6 +215,7 @@ class BuildJava(BuildBase):
             'Instance',
             'Flow',
             'Operators',
+            'Other',
         ]
 
         for category in self._category_order:

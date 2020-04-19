@@ -1,14 +1,18 @@
-// Title: Field read/write
+// Title: Fields
+
+import java.util.List;
 
 public class InstanceField {
-  public String a;
+  public int prim;
+  public String obj;
+  public List<Boolean> generic;
 
   public InstanceField() {
-    this.a = "hi";
+    this.obj = "hi";
   }
 
   public static void myMethod() {
     InstanceField instance = new InstanceField();
-    System.out.println(instance.a);
+    System.out.println(instance.obj);
   }
 }
