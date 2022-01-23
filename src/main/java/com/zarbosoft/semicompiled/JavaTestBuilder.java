@@ -14,7 +14,6 @@ import org.objectweb.asm.util.TraceClassVisitor;
 
 import javax.lang.model.element.Modifier;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -25,6 +24,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+import static com.zarbosoft.semicompiled.Utils.run;
 
 public class JavaTestBuilder {
   private static final String PACKAGE = "com.zarbosoft.semicompiled";
@@ -126,9 +128,7 @@ public class JavaTestBuilder {
             if (mainSpec != null) classes.add(0, new ROPair<>(MAIN_NAME, mainSpec.build()));
 
             // Prep
-            Files.createDirectories(dir.path);
-
-            Test out = new Test(id, title);
+            Test out = new Test(id, title, new ArrayList<>());
 
             List<Path> sources = new ArrayList<>();
 
@@ -146,55 +146,27 @@ public class JavaTestBuilder {
 
             for (boolean debug : new boolean[] {false, true}) {
               // Compile
-              {
-                List<String> command = new ArrayList<>();
-                command.add("javac");
-                command.add("-source");
-                command.add("1.8");
-                command.add("-target");
-                command.add("1.8");
-                command.add("-parameters");
-                if (debug) {
-                  command.add("-g");
-                } else {
-                  command.add("-g:none");
-                }
-                for (Path source : sources) {
-                  command.add(source.toString());
-                }
-                final Process compileProc = new ProcessBuilder(command).inheritIO().start();
-                if (compileProc.waitFor() != 0) throw new RuntimeException(id);
-              }
+              run(
+                  ListBuilder.of("javac", "-source", "1.8", "-target", "1.8", "-parameters")
+                      .addIf(debug, "-g")
+                      .addIf(!debug, "-g:none")
+                      .addStream(sources.stream().map(s -> s.toString())));
 
               for (Path source : sources) {
                 final String classPath = pathSuffix(source, ".class").toString();
 
                 // Decompile
                 {
-                  List<String> command = new ArrayList<>();
-                  command.add("javap");
-                  command.add("-c");
-                  command.add("-s");
-                  command.add("-p");
-                  command.add("-l");
-                  command.add("-constants");
-                  command.add("-v");
-                  command.add(classPath);
-                  final ProcessBuilder decompileProcBuilder = new ProcessBuilder(command);
-                  decompileProcBuilder.inheritIO();
-                  decompileProcBuilder.redirectOutput(ProcessBuilder.Redirect.PIPE);
-                  final Process decompileProc = decompileProcBuilder.start();
-                  try (InputStream s = decompileProc.getInputStream()) {
-                    final String bytecode = new String(s.readAllBytes(), StandardCharsets.UTF_8);
-                    final LinkedHashMap<String, ROPair<String, String>> outFile =
-                        out.files.get(source.getFileName().toString());
-                    if (debug) {
-                      outFile.put("Bytecode (debug)", new ROPair<>("plaintext", bytecode));
-                    } else {
-                      outFile.put("Bytecode", new ROPair<>("plaintext", bytecode));
-                    }
+                  String bytecode =
+                      Utils.runOutput(
+                          "javap", "-c", "-s", "-p", "-l", "-constants", "-v", classPath);
+                  final LinkedHashMap<String, ROPair<String, String>> outFile =
+                      out.files.get(source.getFileName().toString());
+                  if (debug) {
+                    outFile.put("Bytecode (debug)", new ROPair<>("plaintext", bytecode));
+                  } else {
+                    outFile.put("Bytecode", new ROPair<>("plaintext", bytecode));
                   }
-                  if (decompileProc.waitFor() != 0) throw new RuntimeException(id);
                 }
 
                 // ASMify
@@ -214,6 +186,8 @@ public class JavaTestBuilder {
                 }
               }
             }
+
+            dir.manualClean();
 
             return out;
           } catch (Exception e) {

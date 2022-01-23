@@ -21,6 +21,7 @@ public class Generator {
 
   public static void writePage(Path path, String title, Stream<Piece> body) {
     try {
+      if (Files.exists(path)) throw new RuntimeException("Path already exists: " + path);
       try (OutputStream os = Files.newOutputStream(path)) {
         Stream.of(
                 Stream.of("<!DOCTYPE html>"),
@@ -128,11 +129,14 @@ public class Generator {
   }
 
   public void build() {
-    Path root = Paths.get("out").toAbsolutePath();
+    Path root = Paths.get("public").toAbsolutePath();
+    if (Files.exists(root)) Utils.recursiveDelete(root);
     try {
       Files.createDirectories(root);
-      Files.copy(root.getParent().resolve("util.js"), root.resolve("util.js"));
-      Files.copy(root.getParent().resolve("style.css"), root.resolve("style.css"));
+      final Path utilsPath = root.resolve("util.js");
+      if (!Files.exists(utilsPath)) Files.copy(root.getParent().resolve("util.js"), utilsPath);
+      final Path stylePath = root.resolve("style.css");
+      if (!Files.exists(stylePath)) Files.copy(root.getParent().resolve("style.css"), stylePath);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -186,8 +190,9 @@ public class Generator {
                                                     .distinct()
                                                     .map(
                                                         e ->
-                                                            Element.text("button")
+                                                            Element.text("a")
                                                                 .att("class", "sc-output-button")
+                                                                .att("href", "#" + e)
                                                                 .att("data-output", e)
                                                                 .t(e))))
                                     .child(sectionPostGap())
@@ -210,7 +215,8 @@ public class Generator {
                                                                                     .first)
                                                                         .t(
                                                                             c.getValue()
-                                                                                .second))))))),
+                                                                                .second)))))))
+                .childN(test.notes.stream()),
             Element.div()
                 .att("class", "sidebar")
                 .child(

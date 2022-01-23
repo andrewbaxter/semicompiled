@@ -15,25 +15,14 @@ public class Tempdir implements AutoCloseable {
     }
   }
 
+  public void manualClean() {
+    Utils.recursiveDelete(path);
+  }
+
   @Override
   public void close() throws Exception {
     /*
-     Files.walkFileTree(
-         path,
-         new SimpleFileVisitor<Path>() {
-           @Override
-           public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
-               throws IOException {
-             Files.delete(file);
-             return FileVisitResult.CONTINUE;
-           }
-
-           @Override
-           public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-             Files.delete(dir);
-             return FileVisitResult.CONTINUE;
-           }
-         });
+     Utils.recursiveDelete(path);
     */
   }
 }

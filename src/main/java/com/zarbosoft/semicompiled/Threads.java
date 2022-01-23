@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
 
 public class Threads {
   private static final Threads threads = new Threads();
@@ -31,6 +30,25 @@ public class Threads {
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public static <T> Future<T> free(Supplier<T> inner) {
+    CompletableFuture<T> out = new CompletableFuture<>();
+    new Thread(
+            () -> {
+              try {
+                out.complete(inner.get());
+              } catch (Throwable t) {
+                out.completeExceptionally(t);
+              }
+            })
+        .start();
+    return new Future<>(out);
+  }
+
+  @FunctionalInterface
+  public interface Supplier<T> {
+    public T get() throws Exception;
   }
 
   public static class Future<T> {

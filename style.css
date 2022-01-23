@@ -1,6 +1,6 @@
 :root {
   --col-text: black;
-  --col-button-light: rgb(207, 126, 171);
+  --col-a-light: rgb(207, 126, 171);
   --col-text-light: rgb(167, 167, 167);
   --page: 24cm;
   --col-line-light: rgb(204, 204, 204);
@@ -98,21 +98,18 @@ body {
   flex-shrink: 0;
 }
 
-.tabs button {
+.tabs a {
   position: relative;
-  color: var(--col-button-light);
+  color: var(--col-a-light);
   white-space: nowrap;
-  border: none;
-  background: none;
-  font: inherit;
 }
 
-.tabs button[data-selected="true"] {
+.tabs a[data-selected="true"] {
   color: var(--col-selected);
 }
 
-.tabs button[data-selected="true"]::after,
-.tabs button:hover::after {
+.tabs a[data-selected="true"]::after,
+.tabs a:hover::after {
   position: absolute;
   left: calc(50% - 1.2mm);
   bottom: auto;
@@ -124,11 +121,11 @@ body {
   border-radius: 1mm;
 }
 
-.tabs button[data-selected="true"]::after {
+.tabs a[data-selected="true"]::after {
   border-color: var(--col-selected);
 }
 
-.tabs button:hover::after {
+.tabs a:hover::after {
   border-color: var(--col-text-light);
 }
 
@@ -161,6 +158,10 @@ h2 {
   padding-top: 0.4cm;
   padding-bottom: 0.4cm;
   padding-left: var(--pad-header-indent);
+}
+
+p {
+  padding-bottom: 1cm;
 }
 
 a {

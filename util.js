@@ -4,7 +4,7 @@ const button_class = "sc-output-button";
 const output_class = "sc-output";
 window.addEventListener("DOMContentLoaded", (e_) => {
   {
-    let target = null;
+    let target = decodeURI((document.location.hash || "#").substr(1));
     for (let t of document.getElementsByClassName(output_class)) {
       const output = t.getAttribute(output_attr);
       if (target === null || output == target) {

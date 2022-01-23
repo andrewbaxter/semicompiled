@@ -1,5 +1,5 @@
 ---
-image: debian:10
+image: debian:11
 cache:
   key: apt
   paths:
@@ -13,8 +13,8 @@ pages:
   script:
     - export APT_CACHE_DIR=`pwd`/apt-cache
     - mkdir -pv $APT_CACHE_DIR
-    - apt-get update && apt-get install -y openjdk-11-jdk python3 wget clang
-    - python3 build.py
+    - apt-get update && apt-get install -y openjdk-11-jdk maven clang clang-format wabt emscripten
+    - mvn exec:java
   artifacts:
     paths:
       - public
