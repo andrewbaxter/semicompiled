@@ -24,7 +24,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -34,8 +34,6 @@
                 </executions>
                 <configuration>
                     <mainClass>com.zarbosoft.semicompiled.Main</mainClass>
-                    <arguments>
-                    </arguments>
                 </configuration>
             </plugin>
         </plugins>

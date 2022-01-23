@@ -14,7 +14,7 @@ pages:
     - export APT_CACHE_DIR=`pwd`/apt-cache
     - mkdir -pv $APT_CACHE_DIR
     - apt-get update && apt-get install -y openjdk-11-jdk maven clang clang-format wabt emscripten
-    - mvn exec:java
+    - mvn compile exec:java
   artifacts:
     paths:
       - public
