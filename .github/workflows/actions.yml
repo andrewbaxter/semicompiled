@@ -21,7 +21,7 @@ jobs:
           mvn --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dmaven.repo.local=$SC_MAVEN_DIR compile exec:java
       - name: Prep for deploy
         # Workaround for the github actions container mess and included actions breaking in containers
-        run: apt-get install git
+        run: apt-get install -y git
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
