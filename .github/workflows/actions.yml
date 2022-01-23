@@ -1,9 +1,7 @@
 on: [push]
 jobs:
   build:
-    if: contains( github.ref, 'master')
     runs-on: ubuntu-latest
-    container: debian:11
     steps:
       - name: Cache
         uses: actions/cache@v2
@@ -13,15 +11,17 @@ jobs:
           restore-keys: cache
       - uses: actions/checkout@v2
       - name: Render
+        container: debian:11
         run: |
           export APT_CACHE_DIR=`pwd`/semicache/apt-cache
           mkdir -pv $APT_CACHE_DIR
           export SC_MAVEN_DIR=`pwd`/semicache/maven
           mkdir -pv $SC_MAVEN_DIR
           apt-get update && apt-get install -y openjdk-11-jdk maven clang clang-format wabt emscripten
-          mvn -Dmaven.repo.local=$SC_MAVEN_DIR compile exec:java
+          mvn --batch-mode -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dmaven.repo.local=$SC_MAVEN_DIR compile exec:java
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ~/public
