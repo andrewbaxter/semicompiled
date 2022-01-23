@@ -1,3 +1,4 @@
+on: [push]
 jobs:
   build:
     if: contains( github.ref, 'master')
