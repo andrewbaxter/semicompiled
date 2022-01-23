@@ -11,6 +11,7 @@ jobs:
           path: ~/semicache
           key: cache
           restore-keys: cache
+      - uses: actions/checkout@v2
       - name: Render
         run: |
           export APT_CACHE_DIR=`pwd`/semicache/apt-cache
