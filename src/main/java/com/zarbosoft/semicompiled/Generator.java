@@ -82,13 +82,14 @@ public class Generator {
                                     .att("class", "footer")
                                     .child(
                                         Element.p()
-                                            .t("Enjoy a thriving social scene at ")
+                                            .t("Join the thriving social scene at ")
                                             .child(
                                                 Element.text("a")
                                                     .att(
                                                         "href",
                                                         "https://github.com/andrewbaxter/semicompiled")
-                                                    .t("github.")))))
+                                                    .t("github.com/andrewbaxter/semicompiled"))
+                                            .t("."))))
                     .build())
             .flatMap(s -> s)
             .forEachOrdered(
