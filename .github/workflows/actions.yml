@@ -2,6 +2,7 @@ on: [push]
 jobs:
   build:
     if: contains( github.ref, 'master')
+    runs-on: ubuntu-latest
     container: debian:11
     steps:
       - name: Cache
