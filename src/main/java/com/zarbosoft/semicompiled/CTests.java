@@ -27,6 +27,14 @@ public class CTests {
   public static final CType TYPE_DOUBLE = new CType("double", true, false, false);
 
   public static TestGroup build() {
+    try {
+      // emcc does this crazy thing where it does nothing on the first run and exits with a 0 exit
+      // code
+      // so run it twice so the build doesn't fail
+      Utils.run("emcc", "/dev/null");
+    } catch (Exception ignore) {
+    }
+
     return new TestGroup(
         "C 99",
         Stream.of(

@@ -371,7 +371,7 @@ public class JavaTests {
                                           .main(CodeBlock.of("new $T();", name));
                                     })
                                 .build(),
-                            new JavaTestBuilder("7i18wrTj", "Class cross-constructor")
+                            new JavaTestBuilder("Jur3Ngqh", "Class cross-constructor")
                                 .edit(
                                     t -> {
                                       final ClassName name = t.name("MyClass");
