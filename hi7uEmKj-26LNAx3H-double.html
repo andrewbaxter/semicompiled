@@ -1,0 +1,260 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><title>Cast from double - Semicompiled - Semicompiled</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/default.min.css"></link><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script><script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.7.0/dist/highlightjs-line-numbers.min.js"></script><script>hljs.initHighlightingOnLoad();
+hljs.initLineNumbersOnLoad();
+</script><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&amp;display=swap" /><link rel="stylesheet" href="style.css"></link><script src="util.js"></script></head><body><div class="body"><h1>Semicompiled</h1><h2>Cast from double</h2><div class="section"><span class="section-title">Main.java</span><div class="tabs"><a class="sc-output-button" href="#Source" data-output="Source">Source</a><div class="sep"></div><a class="sc-output-button" href="#Bytecode" data-output="Bytecode">Bytecode</a><div class="sep"></div><a class="sc-output-button" href="#ASMifier" data-output="ASMifier">ASMifier</a><div class="sep"></div><a class="sc-output-button" href="#Bytecode (debug)" data-output="Bytecode (debug)">Bytecode (debug)</a><div class="sep"></div><a class="sc-output-button" href="#ASMifier (debug)" data-output="ASMifier (debug)">ASMifier (debug)</a></div><div class="section-gap"></div><div class="pre-outer sc-output" data-output="Source" style="display: none;"><pre><code class="language-java">package com.zarbosoft.semicompiled;
+
+class Main {
+  public static void myMain(double x) {
+    short y = (short) x;
+  }
+}
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-hi7uEmKj-26LNAx3H-double-13915308441459628802/com/zarbosoft/semicompiled/Main.class
+  Last modified Jan 23, 2022; size 227 bytes
+  MD5 checksum 299959b8a7ec0ac9fda05261bdd49ef3
+class com.zarbosoft.semicompiled.Main
+  minor version: 0
+  major version: 52
+  flags: (0x0020) ACC_SUPER
+  this_class: #2                          // com/zarbosoft/semicompiled/Main
+  super_class: #3                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 2, attributes: 0
+Constant pool:
+   #1 = Methodref          #3.#11         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Class              #12            // com/zarbosoft/semicompiled/Main
+   #3 = Class              #13            // java/lang/Object
+   #4 = Utf8               &lt;init&gt;
+   #5 = Utf8               ()V
+   #6 = Utf8               Code
+   #7 = Utf8               myMain
+   #8 = Utf8               (D)V
+   #9 = Utf8               MethodParameters
+  #10 = Utf8               x
+  #11 = NameAndType        #4:#5          // &quot;&lt;init&gt;&quot;:()V
+  #12 = Utf8               com/zarbosoft/semicompiled/Main
+  #13 = Utf8               java/lang/Object
+{
+  com.zarbosoft.semicompiled.Main();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+         4: return
+
+  public static void myMain(double);
+    descriptor: (D)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: dload_0
+         1: d2i
+         2: i2s
+         3: istore_2
+         4: return
+    MethodParameters:
+      Name                           Flags
+      x
+}
+</code></pre></div><div class="pre-outer sc-output" data-output="ASMifier" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
+
+import org.objectweb.asm.AnnotationVisitor;
+import org.objectweb.asm.Attribute;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.ConstantDynamic;
+import org.objectweb.asm.FieldVisitor;
+import org.objectweb.asm.Handle;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.RecordComponentVisitor;
+import org.objectweb.asm.Type;
+import org.objectweb.asm.TypePath;
+
+public class MainDump implements Opcodes {
+
+  public static byte[] dump() throws Exception {
+
+    ClassWriter classWriter = new ClassWriter(0);
+    FieldVisitor fieldVisitor;
+    RecordComponentVisitor recordComponentVisitor;
+    MethodVisitor methodVisitor;
+    AnnotationVisitor annotationVisitor0;
+
+    classWriter.visit(
+        V1_8, ACC_SUPER, &quot;com/zarbosoft/semicompiled/Main&quot;, null, &quot;java/lang/Object&quot;, null);
+
+    {
+      methodVisitor = classWriter.visitMethod(0, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, null, null);
+      methodVisitor.visitCode();
+      methodVisitor.visitVarInsn(ALOAD, 0);
+      methodVisitor.visitMethodInsn(INVOKESPECIAL, &quot;java/lang/Object&quot;, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, false);
+      methodVisitor.visitInsn(RETURN);
+      methodVisitor.visitMaxs(1, 1);
+      methodVisitor.visitEnd();
+    }
+    {
+      methodVisitor =
+          classWriter.visitMethod(ACC_PUBLIC | ACC_STATIC, &quot;myMain&quot;, &quot;(D)V&quot;, null, null);
+      methodVisitor.visitParameter(&quot;x&quot;, 0);
+      methodVisitor.visitCode();
+      methodVisitor.visitVarInsn(DLOAD, 0);
+      methodVisitor.visitInsn(D2I);
+      methodVisitor.visitInsn(I2S);
+      methodVisitor.visitVarInsn(ISTORE, 2);
+      methodVisitor.visitInsn(RETURN);
+      methodVisitor.visitMaxs(2, 3);
+      methodVisitor.visitEnd();
+    }
+    classWriter.visitEnd();
+
+    return classWriter.toByteArray();
+  }
+}
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-hi7uEmKj-26LNAx3H-double-13915308441459628802/com/zarbosoft/semicompiled/Main.class
+  Last modified Jan 23, 2022; size 428 bytes
+  MD5 checksum d3fc41f5e1f985e3fd866a0d27299ce3
+  Compiled from &quot;Main.java&quot;
+class com.zarbosoft.semicompiled.Main
+  minor version: 0
+  major version: 52
+  flags: (0x0020) ACC_SUPER
+  this_class: #2                          // com/zarbosoft/semicompiled/Main
+  super_class: #3                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 2, attributes: 1
+Constant pool:
+   #1 = Methodref          #3.#20         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Class              #21            // com/zarbosoft/semicompiled/Main
+   #3 = Class              #22            // java/lang/Object
+   #4 = Utf8               &lt;init&gt;
+   #5 = Utf8               ()V
+   #6 = Utf8               Code
+   #7 = Utf8               LineNumberTable
+   #8 = Utf8               LocalVariableTable
+   #9 = Utf8               this
+  #10 = Utf8               Lcom/zarbosoft/semicompiled/Main;
+  #11 = Utf8               myMain
+  #12 = Utf8               (D)V
+  #13 = Utf8               x
+  #14 = Utf8               D
+  #15 = Utf8               y
+  #16 = Utf8               S
+  #17 = Utf8               MethodParameters
+  #18 = Utf8               SourceFile
+  #19 = Utf8               Main.java
+  #20 = NameAndType        #4:#5          // &quot;&lt;init&gt;&quot;:()V
+  #21 = Utf8               com/zarbosoft/semicompiled/Main
+  #22 = Utf8               java/lang/Object
+{
+  com.zarbosoft.semicompiled.Main();
+    descriptor: ()V
+    flags: (0x0000)
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/zarbosoft/semicompiled/Main;
+
+  public static void myMain(double);
+    descriptor: (D)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: dload_0
+         1: d2i
+         2: i2s
+         3: istore_2
+         4: return
+      LineNumberTable:
+        line 5: 0
+        line 6: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0     x   D
+            4       1     2     y   S
+    MethodParameters:
+      Name                           Flags
+      x
+}
+SourceFile: &quot;Main.java&quot;
+</code></pre></div><div class="pre-outer sc-output" data-output="ASMifier (debug)" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
+
+import org.objectweb.asm.AnnotationVisitor;
+import org.objectweb.asm.Attribute;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.ConstantDynamic;
+import org.objectweb.asm.FieldVisitor;
+import org.objectweb.asm.Handle;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.RecordComponentVisitor;
+import org.objectweb.asm.Type;
+import org.objectweb.asm.TypePath;
+
+public class MainDump implements Opcodes {
+
+  public static byte[] dump() throws Exception {
+
+    ClassWriter classWriter = new ClassWriter(0);
+    FieldVisitor fieldVisitor;
+    RecordComponentVisitor recordComponentVisitor;
+    MethodVisitor methodVisitor;
+    AnnotationVisitor annotationVisitor0;
+
+    classWriter.visit(
+        V1_8, ACC_SUPER, &quot;com/zarbosoft/semicompiled/Main&quot;, null, &quot;java/lang/Object&quot;, null);
+
+    classWriter.visitSource(&quot;Main.java&quot;, null);
+
+    {
+      methodVisitor = classWriter.visitMethod(0, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, null, null);
+      methodVisitor.visitCode();
+      Label label0 = new Label();
+      methodVisitor.visitLabel(label0);
+      methodVisitor.visitLineNumber(3, label0);
+      methodVisitor.visitVarInsn(ALOAD, 0);
+      methodVisitor.visitMethodInsn(INVOKESPECIAL, &quot;java/lang/Object&quot;, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, false);
+      methodVisitor.visitInsn(RETURN);
+      Label label1 = new Label();
+      methodVisitor.visitLabel(label1);
+      methodVisitor.visitLocalVariable(
+          &quot;this&quot;, &quot;Lcom/zarbosoft/semicompiled/Main;&quot;, null, label0, label1, 0);
+      methodVisitor.visitMaxs(1, 1);
+      methodVisitor.visitEnd();
+    }
+    {
+      methodVisitor =
+          classWriter.visitMethod(ACC_PUBLIC | ACC_STATIC, &quot;myMain&quot;, &quot;(D)V&quot;, null, null);
+      methodVisitor.visitParameter(&quot;x&quot;, 0);
+      methodVisitor.visitCode();
+      Label label0 = new Label();
+      methodVisitor.visitLabel(label0);
+      methodVisitor.visitLineNumber(5, label0);
+      methodVisitor.visitVarInsn(DLOAD, 0);
+      methodVisitor.visitInsn(D2I);
+      methodVisitor.visitInsn(I2S);
+      methodVisitor.visitVarInsn(ISTORE, 2);
+      Label label1 = new Label();
+      methodVisitor.visitLabel(label1);
+      methodVisitor.visitLineNumber(6, label1);
+      methodVisitor.visitInsn(RETURN);
+      Label label2 = new Label();
+      methodVisitor.visitLabel(label2);
+      methodVisitor.visitLocalVariable(&quot;x&quot;, &quot;D&quot;, null, label0, label2, 0);
+      methodVisitor.visitLocalVariable(&quot;y&quot;, &quot;S&quot;, null, label1, label2, 2);
+      methodVisitor.visitMaxs(2, 3);
+      methodVisitor.visitEnd();
+    }
+    classWriter.visitEnd();
+
+    return classWriter.toByteArray();
+  }
+}
+</code></pre></div></div></div><div class="sidebar"><div class="toc"><a href="index.html">&#129128; Java</a><a href="5mKIlBrv.html" data-selected="false">Hello world</a><div class="group"><span>Data types</span><div><div class="group"><span>Int</span><div><a href="vQ2evTWW-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="vQ2evTWW-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="vQ2evTWW-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="vQ2evTWW-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="vQ2evTWW-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="vQ2evTWW-QfXtniZ9.html" data-selected="false">Unbox and unbox</a><div class="sep"></div><a href="vQ2evTWW-26LNAx3H-short.html" data-selected="false">Cast from short</a><div class="sep"></div><a href="vQ2evTWW-26LNAx3H-long.html" data-selected="false">Cast from long</a><div class="sep"></div><a href="vQ2evTWW-26LNAx3H-byte.html" data-selected="false">Cast from byte</a><div class="sep"></div><a href="vQ2evTWW-26LNAx3H-float.html" data-selected="false">Cast from float</a><div class="sep"></div><a href="vQ2evTWW-26LNAx3H-double.html" data-selected="false">Cast from double</a><div class="sep"></div><a href="vQ2evTWW-IUei5O2W.html" data-selected="false">Add</a><div class="sep"></div><a href="vQ2evTWW-gCXFOJUW.html" data-selected="false">Subtract</a><div class="sep"></div><a href="vQ2evTWW-IOSRxhGe.html" data-selected="false">Multiply</a><div class="sep"></div><a href="vQ2evTWW-yyNdXz5g.html" data-selected="false">Divide</a><div class="sep"></div><a href="vQ2evTWW-FN84Pimh.html" data-selected="false">Mod</a><div class="sep"></div><a href="vQ2evTWW-9mBJbleB.html" data-selected="false">Shift left</a><div class="sep"></div><a href="vQ2evTWW-pgKyHDmG.html" data-selected="false">Shift right</a><div class="sep"></div><a href="vQ2evTWW-xxzHuyil.html" data-selected="false">Bitwise and</a><div class="sep"></div><a href="vQ2evTWW-Pdn71cmm.html" data-selected="false">Bitwise or</a><div class="sep"></div><a href="vQ2evTWW-ugS852Gs.html" data-selected="false">Bitwise xor</a><div class="sep"></div><a href="vQ2evTWW-RKw5XrHL.html" data-selected="false">Bitwise not</a><div class="sep"></div><a href="vQ2evTWW-T6iiDceD.html" data-selected="false">Less than</a><div class="sep"></div><a href="vQ2evTWW-j61bLTda.html" data-selected="false">Less than/equal</a><div class="sep"></div><a href="vQ2evTWW-KVr6SBkM.html" data-selected="false">Greater than</a><div class="sep"></div><a href="vQ2evTWW-Ec3NLe4z.html" data-selected="false">Greater than/equal</a><div class="sep"></div><a href="vQ2evTWW-2mc2dIDY.html" data-selected="false">Equal</a><div class="sep"></div><a href="vQ2evTWW-lep6CjBN.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>Long</span><div><a href="LW2Uf666-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="LW2Uf666-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="LW2Uf666-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="LW2Uf666-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="LW2Uf666-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="LW2Uf666-QfXtniZ9.html" data-selected="false">Unbox and unbox</a><div class="sep"></div><a href="LW2Uf666-26LNAx3H-int.html" data-selected="false">Cast from int</a><div class="sep"></div><a href="LW2Uf666-26LNAx3H-short.html" data-selected="false">Cast from short</a><div class="sep"></div><a href="LW2Uf666-26LNAx3H-byte.html" data-selected="false">Cast from byte</a><div class="sep"></div><a href="LW2Uf666-26LNAx3H-float.html" data-selected="false">Cast from float</a><div class="sep"></div><a href="LW2Uf666-26LNAx3H-double.html" data-selected="false">Cast from double</a><div class="sep"></div><a href="LW2Uf666-IUei5O2W.html" data-selected="false">Add</a><div class="sep"></div><a href="LW2Uf666-gCXFOJUW.html" data-selected="false">Subtract</a><div class="sep"></div><a href="LW2Uf666-IOSRxhGe.html" data-selected="false">Multiply</a><div class="sep"></div><a href="LW2Uf666-yyNdXz5g.html" data-selected="false">Divide</a><div class="sep"></div><a href="LW2Uf666-FN84Pimh.html" data-selected="false">Mod</a><div class="sep"></div><a href="LW2Uf666-9mBJbleB.html" data-selected="false">Shift left</a><div class="sep"></div><a href="LW2Uf666-pgKyHDmG.html" data-selected="false">Shift right</a><div class="sep"></div><a href="LW2Uf666-xxzHuyil.html" data-selected="false">Bitwise and</a><div class="sep"></div><a href="LW2Uf666-Pdn71cmm.html" data-selected="false">Bitwise or</a><div class="sep"></div><a href="LW2Uf666-ugS852Gs.html" data-selected="false">Bitwise xor</a><div class="sep"></div><a href="LW2Uf666-RKw5XrHL.html" data-selected="false">Bitwise not</a><div class="sep"></div><a href="LW2Uf666-T6iiDceD.html" data-selected="false">Less than</a><div class="sep"></div><a href="LW2Uf666-j61bLTda.html" data-selected="false">Less than/equal</a><div class="sep"></div><a href="LW2Uf666-KVr6SBkM.html" data-selected="false">Greater than</a><div class="sep"></div><a href="LW2Uf666-Ec3NLe4z.html" data-selected="false">Greater than/equal</a><div class="sep"></div><a href="LW2Uf666-2mc2dIDY.html" data-selected="false">Equal</a><div class="sep"></div><a href="LW2Uf666-lep6CjBN.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>Short</span><div><a href="hi7uEmKj-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="hi7uEmKj-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="hi7uEmKj-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="hi7uEmKj-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="hi7uEmKj-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="hi7uEmKj-QfXtniZ9.html" data-selected="false">Unbox and unbox</a><div class="sep"></div><a href="hi7uEmKj-26LNAx3H-int.html" data-selected="false">Cast from int</a><div class="sep"></div><a href="hi7uEmKj-26LNAx3H-long.html" data-selected="false">Cast from long</a><div class="sep"></div><a href="hi7uEmKj-26LNAx3H-byte.html" data-selected="false">Cast from byte</a><div class="sep"></div><a href="hi7uEmKj-26LNAx3H-float.html" data-selected="false">Cast from float</a><div class="sep"></div><a href="hi7uEmKj-26LNAx3H-double.html" data-selected="true">Cast from double</a><div class="sep"></div><a href="hi7uEmKj-IUei5O2W.html" data-selected="false">Add</a><div class="sep"></div><a href="hi7uEmKj-gCXFOJUW.html" data-selected="false">Subtract</a><div class="sep"></div><a href="hi7uEmKj-IOSRxhGe.html" data-selected="false">Multiply</a><div class="sep"></div><a href="hi7uEmKj-yyNdXz5g.html" data-selected="false">Divide</a><div class="sep"></div><a href="hi7uEmKj-FN84Pimh.html" data-selected="false">Mod</a><div class="sep"></div><a href="hi7uEmKj-9mBJbleB.html" data-selected="false">Shift left</a><div class="sep"></div><a href="hi7uEmKj-pgKyHDmG.html" data-selected="false">Shift right</a><div class="sep"></div><a href="hi7uEmKj-xxzHuyil.html" data-selected="false">Bitwise and</a><div class="sep"></div><a href="hi7uEmKj-Pdn71cmm.html" data-selected="false">Bitwise or</a><div class="sep"></div><a href="hi7uEmKj-ugS852Gs.html" data-selected="false">Bitwise xor</a><div class="sep"></div><a href="hi7uEmKj-RKw5XrHL.html" data-selected="false">Bitwise not</a><div class="sep"></div><a href="hi7uEmKj-T6iiDceD.html" data-selected="false">Less than</a><div class="sep"></div><a href="hi7uEmKj-j61bLTda.html" data-selected="false">Less than/equal</a><div class="sep"></div><a href="hi7uEmKj-KVr6SBkM.html" data-selected="false">Greater than</a><div class="sep"></div><a href="hi7uEmKj-Ec3NLe4z.html" data-selected="false">Greater than/equal</a><div class="sep"></div><a href="hi7uEmKj-2mc2dIDY.html" data-selected="false">Equal</a><div class="sep"></div><a href="hi7uEmKj-lep6CjBN.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>Byte</span><div><a href="NKSMcYSr-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="NKSMcYSr-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="NKSMcYSr-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="NKSMcYSr-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="NKSMcYSr-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="NKSMcYSr-QfXtniZ9.html" data-selected="false">Unbox and unbox</a><div class="sep"></div><a href="NKSMcYSr-26LNAx3H-int.html" data-selected="false">Cast from int</a><div class="sep"></div><a href="NKSMcYSr-26LNAx3H-short.html" data-selected="false">Cast from short</a><div class="sep"></div><a href="NKSMcYSr-26LNAx3H-long.html" data-selected="false">Cast from long</a><div class="sep"></div><a href="NKSMcYSr-26LNAx3H-float.html" data-selected="false">Cast from float</a><div class="sep"></div><a href="NKSMcYSr-26LNAx3H-double.html" data-selected="false">Cast from double</a><div class="sep"></div><a href="NKSMcYSr-IUei5O2W.html" data-selected="false">Add</a><div class="sep"></div><a href="NKSMcYSr-gCXFOJUW.html" data-selected="false">Subtract</a><div class="sep"></div><a href="NKSMcYSr-IOSRxhGe.html" data-selected="false">Multiply</a><div class="sep"></div><a href="NKSMcYSr-yyNdXz5g.html" data-selected="false">Divide</a><div class="sep"></div><a href="NKSMcYSr-FN84Pimh.html" data-selected="false">Mod</a><div class="sep"></div><a href="NKSMcYSr-9mBJbleB.html" data-selected="false">Shift left</a><div class="sep"></div><a href="NKSMcYSr-pgKyHDmG.html" data-selected="false">Shift right</a><div class="sep"></div><a href="NKSMcYSr-xxzHuyil.html" data-selected="false">Bitwise and</a><div class="sep"></div><a href="NKSMcYSr-Pdn71cmm.html" data-selected="false">Bitwise or</a><div class="sep"></div><a href="NKSMcYSr-ugS852Gs.html" data-selected="false">Bitwise xor</a><div class="sep"></div><a href="NKSMcYSr-RKw5XrHL.html" data-selected="false">Bitwise not</a><div class="sep"></div><a href="NKSMcYSr-T6iiDceD.html" data-selected="false">Less than</a><div class="sep"></div><a href="NKSMcYSr-j61bLTda.html" data-selected="false">Less than/equal</a><div class="sep"></div><a href="NKSMcYSr-KVr6SBkM.html" data-selected="false">Greater than</a><div class="sep"></div><a href="NKSMcYSr-Ec3NLe4z.html" data-selected="false">Greater than/equal</a><div class="sep"></div><a href="NKSMcYSr-2mc2dIDY.html" data-selected="false">Equal</a><div class="sep"></div><a href="NKSMcYSr-lep6CjBN.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>Float</span><div><a href="4IeGaY2q-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="4IeGaY2q-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="4IeGaY2q-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="4IeGaY2q-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="4IeGaY2q-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="4IeGaY2q-QfXtniZ9.html" data-selected="false">Unbox and unbox</a><div class="sep"></div><a href="4IeGaY2q-26LNAx3H-int.html" data-selected="false">Cast from int</a><div class="sep"></div><a href="4IeGaY2q-26LNAx3H-short.html" data-selected="false">Cast from short</a><div class="sep"></div><a href="4IeGaY2q-26LNAx3H-long.html" data-selected="false">Cast from long</a><div class="sep"></div><a href="4IeGaY2q-26LNAx3H-byte.html" data-selected="false">Cast from byte</a><div class="sep"></div><a href="4IeGaY2q-26LNAx3H-double.html" data-selected="false">Cast from double</a><div class="sep"></div><a href="4IeGaY2q-IUei5O2W.html" data-selected="false">Add</a><div class="sep"></div><a href="4IeGaY2q-gCXFOJUW.html" data-selected="false">Subtract</a><div class="sep"></div><a href="4IeGaY2q-IOSRxhGe.html" data-selected="false">Multiply</a><div class="sep"></div><a href="4IeGaY2q-yyNdXz5g.html" data-selected="false">Divide</a><div class="sep"></div><a href="4IeGaY2q-FN84Pimh.html" data-selected="false">Mod</a><div class="sep"></div><a href="4IeGaY2q-T6iiDceD.html" data-selected="false">Less than</a><div class="sep"></div><a href="4IeGaY2q-j61bLTda.html" data-selected="false">Less than/equal</a><div class="sep"></div><a href="4IeGaY2q-KVr6SBkM.html" data-selected="false">Greater than</a><div class="sep"></div><a href="4IeGaY2q-Ec3NLe4z.html" data-selected="false">Greater than/equal</a><div class="sep"></div><a href="4IeGaY2q-2mc2dIDY.html" data-selected="false">Equal</a><div class="sep"></div><a href="4IeGaY2q-lep6CjBN.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>Double</span><div><a href="R8pc3gd1-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="R8pc3gd1-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="R8pc3gd1-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="R8pc3gd1-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="R8pc3gd1-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="R8pc3gd1-QfXtniZ9.html" data-selected="false">Unbox and unbox</a><div class="sep"></div><a href="R8pc3gd1-26LNAx3H-int.html" data-selected="false">Cast from int</a><div class="sep"></div><a href="R8pc3gd1-26LNAx3H-short.html" data-selected="false">Cast from short</a><div class="sep"></div><a href="R8pc3gd1-26LNAx3H-long.html" data-selected="false">Cast from long</a><div class="sep"></div><a href="R8pc3gd1-26LNAx3H-byte.html" data-selected="false">Cast from byte</a><div class="sep"></div><a href="R8pc3gd1-26LNAx3H-float.html" data-selected="false">Cast from float</a><div class="sep"></div><a href="R8pc3gd1-IUei5O2W.html" data-selected="false">Add</a><div class="sep"></div><a href="R8pc3gd1-gCXFOJUW.html" data-selected="false">Subtract</a><div class="sep"></div><a href="R8pc3gd1-IOSRxhGe.html" data-selected="false">Multiply</a><div class="sep"></div><a href="R8pc3gd1-yyNdXz5g.html" data-selected="false">Divide</a><div class="sep"></div><a href="R8pc3gd1-FN84Pimh.html" data-selected="false">Mod</a><div class="sep"></div><a href="R8pc3gd1-T6iiDceD.html" data-selected="false">Less than</a><div class="sep"></div><a href="R8pc3gd1-j61bLTda.html" data-selected="false">Less than/equal</a><div class="sep"></div><a href="R8pc3gd1-KVr6SBkM.html" data-selected="false">Greater than</a><div class="sep"></div><a href="R8pc3gd1-Ec3NLe4z.html" data-selected="false">Greater than/equal</a><div class="sep"></div><a href="R8pc3gd1-2mc2dIDY.html" data-selected="false">Equal</a><div class="sep"></div><a href="R8pc3gd1-lep6CjBN.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>Boolean</span><div><a href="BRMXa3IX-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="BRMXa3IX-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="BRMXa3IX-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="BRMXa3IX-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="BRMXa3IX-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="3zib7hCc.html" data-selected="false">Logical and</a><div class="sep"></div><a href="SJzTB2GS.html" data-selected="false">Logical or</a><div class="sep"></div><a href="RSHb74OE.html" data-selected="false">Logical not</a><div class="sep"></div><a href="oVdbZjnx.html" data-selected="false">Equal</a><div class="sep"></div><a href="e8fyNApX.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>String</span><div><a href="cPS2FjBM-5QrfS6Po.html" data-selected="false">Declare</a><div class="sep"></div><a href="cPS2FjBM-qMfBLRNZ.html" data-selected="false">Initialize</a><div class="sep"></div><a href="cPS2FjBM-RHLYQ82X.html" data-selected="false">Read</a><div class="sep"></div><a href="cPS2FjBM-03r350PB.html" data-selected="false">Literals</a><div class="sep"></div><a href="cPS2FjBM-AzF61WRp.html" data-selected="false">Return</a><div class="sep"></div><a href="fFeCmGOv.html" data-selected="false">Downcast</a><div class="sep"></div><a href="ViHsOhZV.html" data-selected="false">Equal</a><div class="sep"></div><a href="WZsqJkGM.html" data-selected="false">Not equal</a></div></div><div class="sep"></div><div class="group"><span>Array</span><div><a href="UtByAtBM.html" data-selected="false">Declaration</a><div class="sep"></div><a href="Rmr6OoeA.html" data-selected="false">Initialization with size</a><div class="sep"></div><a href="vsCMaKat.html" data-selected="false">Initialization with elements</a><div class="sep"></div><a href="3wgux0VJ.html" data-selected="false">Element assignment</a><div class="sep"></div><a href="o5eUZxzz.html" data-selected="false">Element read</a></div></div></div></div><div class="group"><span>Control flow</span><div><div class="group"><span>Branch</span><div><a href="tRjzSqTQ.html" data-selected="false">If</a><div class="sep"></div><a href="VBUdfIx7.html" data-selected="false">If, else</a><div class="sep"></div><a href="oqzuW0cR.html" data-selected="false">Branched initialization</a><div class="sep"></div><a href="8qc3juc9.html" data-selected="false">If, else if</a><div class="sep"></div><a href="67hsRfey.html" data-selected="false">If, else if, else</a></div></div><div class="sep"></div><div class="group"><span>Loop</span><div><a href="LsmN0K43.html" data-selected="false">While</a><div class="sep"></div><a href="WyR4GyVs.html" data-selected="false">Continue</a><div class="sep"></div><a href="BiEoQy0X.html" data-selected="false">Break</a></div></div><div class="sep"></div><div class="group"><span>Switch</span><div><a href="4Db5MVuN.html" data-selected="false">Integer cases</a><div class="sep"></div><a href="tWLWsiZX.html" data-selected="false">String cases</a><div class="sep"></div><a href="Pt6uIbVR.html" data-selected="false">Default case</a><div class="sep"></div><a href="lNX69kKA.html" data-selected="false">Fallthrough</a><div class="sep"></div><a href="gXQbcIfy.html" data-selected="false">Return</a></div></div><div class="sep"></div><div class="group"><span>Exception</span><div><a href="ZmOCKIjw.html" data-selected="false">Throw</a><div class="sep"></div><a href="2ciu6bbD.html" data-selected="false">Try, finally</a><div class="sep"></div><a href="p56NWWXO.html" data-selected="false">Try, catch, finally</a><div class="sep"></div><a href="J65TEQ3F.html" data-selected="false">Try, multiple catch</a><div class="sep"></div><a href="vgWtbZJp.html" data-selected="false">Try, catch multiple types</a><div class="sep"></div><a href="7SQ338gD.html" data-selected="false">Nested-try, catch</a><div class="sep"></div><a href="d3kdjP66.html" data-selected="false">Try, nested-catch</a></div></div></div></div><div class="group"><span>Static</span><div><div class="group"><span>Methods</span><div><a href="89Sw7EYo.html" data-selected="false">No arguments, no return</a><div class="sep"></div><a href="MZ5dDaQh.html" data-selected="false">Arguments, no return</a><div class="sep"></div><a href="t9dx2v63.html" data-selected="false">No arguments, return</a><div class="sep"></div><a href="X1k3Fwfc.html" data-selected="false">Arguments, return</a></div></div><div class="sep"></div><div class="group"><span>Fields</span><div><a href="jWvEgSoB.html" data-selected="false">Static field</a><div class="sep"></div><a href="Bp0rPHJh.html" data-selected="false">Static block</a></div></div></div></div><div class="group"><span>Class</span><div><div class="group"><span>Declaration</span><div><a href="iGSOZbFe.html" data-selected="false">Empty class</a><div class="sep"></div><a href="7i18wrTj.html" data-selected="false">Class with constructor</a><div class="sep"></div><a href="Jur3Ngqh.html" data-selected="false">Class cross-constructor</a><div class="sep"></div><a href="1cKp0Aar.html" data-selected="false">Nested class</a><div class="sep"></div><a href="PRj4HXzX.html" data-selected="false">Local class</a><div class="sep"></div><a href="wworYyIB.html" data-selected="false">Anonymous class</a><div class="sep"></div><a href="JDj7q8z0.html" data-selected="false">Inheritance</a><div class="sep"></div><a href="jf7PB19D.html" data-selected="false">Interface</a></div></div><div class="sep"></div><div class="group"><span>Methods</span><div><a href="v1jQFDPn.html" data-selected="false">Method</a><div class="sep"></div><a href="2rOLz2Xy.html" data-selected="false">Private method</a><div class="sep"></div><a href="ruxZBzaZ.html" data-selected="false">Final method</a><div class="sep"></div><a href="ylGzWdic.html" data-selected="false">Inherit method</a><div class="sep"></div><a href="HLz95e09.html" data-selected="false">Final inherit method</a></div></div><div class="sep"></div><div class="group"><span>Fields</span><div><a href="kQCzcLZ6.html" data-selected="false">Declaration</a><div class="sep"></div><a href="OsECV9nG.html" data-selected="false">Constructor initialization</a><div class="sep"></div><a href="WiQ6Uvv3.html" data-selected="false">Non-constructor initialization</a></div></div></div></div><div class="group"><span>Other</span><div><a href="HJ9n1mha.html" data-selected="false">Import</a><div class="sep"></div><a href="SQmFqboA.html" data-selected="false">Local reuse</a><div class="sep"></div><a href="c6kMuAp5.html" data-selected="false">First class function</a></div></div></div></div><div class="footer"><p>Enjoy a thriving social scene at <a href="https://github.com/andrewbaxter/semicompiled">github.</a></p></div></body></html>

@@ -1,0 +1,274 @@
+:root {
+  --col-text: black;
+  --col-a-light: rgb(207, 126, 171);
+  --col-text-light: rgb(167, 167, 167);
+  --page: 24cm;
+  --col-line-light: rgb(204, 204, 204);
+  --col-selected: steelblue;
+}
+
+/* Major structure */
+@media (max-width: 30cm) {
+  :root {
+    --pad-header-indent: 0cm;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+  }
+
+  .sidebar {
+    align-self: center;
+  }
+
+  div.twocols {
+    grid-template-columns: 1fr;
+  }
+}
+@media (min-width: 30cm) {
+  :root {
+    --pad-header-indent: 0.5cm;
+  }
+
+  body {
+    display: grid;
+    grid-template-columns: 1fr var(--page) 1fr;
+    justify-content: center;
+    gap: 1cm;
+  }
+
+  .sidebar {
+    justify-self: end;
+  }
+
+  div.twocols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 5mm;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding: 1cm;
+}
+
+.body {
+  min-width: 0;
+  max-width: 100%;
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.body > .sep {
+  padding-bottom: 1cm;
+}
+
+.sidebar {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.sidebar > * {
+  flex-shrink: 1;
+}
+
+.footer {
+  grid-row: 2;
+  grid-column: 1/4;
+  justify-self: center;
+  padding-top: 2cm;
+  padding: 1cm;
+}
+
+.footer a {
+  border-top: 1px solid var(--col-text-light);
+}
+
+.footer a:hover {
+  border-color: var(--col-a-light);
+}
+
+/* Minor structure */
+
+.tabs {
+  padding-bottom: 3mm;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tabs > .sep {
+  display: block;
+  width: 3mm;
+  flex-shrink: 0;
+}
+
+.tabs a {
+  position: relative;
+  color: var(--col-a-light);
+  white-space: nowrap;
+}
+
+.tabs a[data-selected="true"] {
+  color: var(--col-selected);
+}
+
+.tabs a[data-selected="true"]::after,
+.tabs a:hover::after {
+  position: absolute;
+  left: calc(50% - 1.2mm);
+  bottom: auto;
+  top: calc(100%);
+  content: "";
+  width: 2mm;
+  height: 0.3mm;
+  border: 0.5mm solid var(--col-selected);
+  border-radius: 1mm;
+}
+
+.tabs a[data-selected="true"]::after {
+  border-color: var(--col-selected);
+}
+
+.tabs a:hover::after {
+  border-color: var(--col-text-light);
+}
+
+div.pre-outer {
+  padding: 0.5cm 0;
+}
+
+pre {
+  max-width: 100%;
+  background: #f0f0f0;
+  padding: 0.2cm;
+  border-radius: 0.2cm;
+  font-size: 0.85em;
+}
+
+div.twocols {
+  display: grid;
+  gap: 1cm;
+}
+
+h1 {
+  font-weight: 400;
+  padding-top: 1cm;
+  padding-bottom: 0.5cm;
+  padding-left: var(--pad-header-indent);
+}
+
+h2 {
+  font-weight: 400;
+  padding-top: 0.4cm;
+  padding-bottom: 0.4cm;
+  padding-left: var(--pad-header-indent);
+}
+
+p {
+  padding-bottom: 1cm;
+}
+
+a {
+  text-decoration: none;
+  color: var(--col-text);
+}
+
+.toc {
+  padding: 0 0.5cm;
+}
+
+.toc a {
+  display: block;
+  padding-top: 3mm;
+  padding-bottom: 3mm;
+  position: relative;
+}
+
+.toc a:hover::before,
+.toc a[data-selected="true"]::before {
+  position: absolute;
+  top: calc(50% - 0.75mm);
+  bottom: auto;
+  left: -4mm;
+  content: "";
+  width: 1.5mm;
+  height: 0.3mm;
+  border: 0.5mm solid var(--col-selected);
+  border-radius: 1mm;
+}
+
+.toc a[data-selected="true"] {
+  color: var(--col-selected);
+}
+
+.toc a[data-selected="true"]::before {
+  border-color: var(--col-selected);
+}
+
+.toc a:hover::before {
+  border-color: var(--col-text-light);
+}
+
+.toc .group > span {
+  color: var(--col-text-light);
+  display: block;
+  padding-top: 4mm;
+  padding-bottom: 6mm;
+}
+
+.toc .group > div {
+  padding-left: 10mm;
+  border-left: 0.5mm solid var(--col-line-light);
+}
+
+.section {
+  padding-top: 1cm;
+  padding-bottom: 0.5cm;
+}
+
+.section-gap {
+  padding-bottom: 1cm;
+}
+
+.section-title {
+  color: var(--col-text-light);
+  display: block;
+  padding-left: var(--pad-header-indent);
+  /*padding-bottom: 1cm;*/
+}
+
+.section-title::after {
+  display: block;
+  content: "";
+  border-bottom: 0.5mm solid var(--col-line-light);
+  margin-left: calc(var(--pad-header-indent) * -1);
+}
+
+/* Override hilightjs */
+
+.hljs-ln-n {
+  margin-right: 1em;
+  color: steelblue;
+  opacity: 70%;
+}
+
+.hljs {
+  background: none;
+  /*max-height: 90vh;*/
+}
