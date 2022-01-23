@@ -94,6 +94,10 @@ public class CTestBuilder {
                   source.toString(),
                   "-o",
                   wasmPath.toString());
+              while (!Files.exists(wasmPath)) {
+                // fs sync issues?
+                Thread.sleep(100);
+              }
               outFile.put(
                   "WASM (WAT)",
                   new ROPair<>("plaintext", Utils.runOutput("wasm2wat", wasmPath.toString())));
