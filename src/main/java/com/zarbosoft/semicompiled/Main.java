@@ -1,7 +1,5 @@
 package com.zarbosoft.semicompiled;
 
-import com.zarbosoft.semicompiled.html.Element;
-
 import java.util.stream.Stream;
 
 public class Main {
@@ -11,14 +9,8 @@ public class Main {
 
   public static void main(String[] args) {
     Generator generator = new Generator();
-    generator.section(
-        JavaTests.build(),
-        Stream.of(
-            Element.p()
-                .t(
-                    "Compiled with source/target version 1.8. Includes javap and ASMifier output.")));
-    generator.section(
-        CTests.build(), Stream.of(Element.p().t("Including LLVM IR, WASM, and eBPF.")));
+    generator.section(JavaTests.build(), Stream.of());
+    generator.section(CTests.build(), Stream.of());
     generator.build();
   }
 }

@@ -25,20 +25,20 @@ public abstract class Element<T extends Element> implements Piece {
     return new SimpleElement(tag);
   }
 
-  public static TextElement text(String tag) {
-    return new TextElement(tag);
+  public static InlineElement text(String tag) {
+    return new InlineElement(tag);
   }
 
-  public static TextElement h1() {
-    return new TextElement("h1");
+  public static InlineElement h1() {
+    return new InlineElement("h1");
   }
 
-  public static TextElement h2() {
-    return new TextElement("h2");
+  public static InlineElement h2() {
+    return new InlineElement("h2");
   }
 
-  public static TextElement p() {
-    return new TextElement("p");
+  public static InlineElement p() {
+    return new InlineElement("p");
   }
 
   public static ContainerElement div() {

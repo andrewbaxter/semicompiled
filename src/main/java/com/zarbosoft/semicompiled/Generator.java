@@ -74,7 +74,21 @@ public class Generator {
                                     .att("rel", "stylesheet")
                                     .att("href", "style.css"))
                             .child(Element.text("script").att("src", "util.js")))
-                    .child(Element.container("body").r(d -> body.forEachOrdered(l -> d.child(l))))
+                    .child(
+                        Element.container("body")
+                            .childN(body)
+                            .child(
+                                Element.div()
+                                    .att("class", "footer")
+                                    .child(
+                                        Element.p()
+                                            .t("Enjoy a thriving social scene at ")
+                                            .child(
+                                                Element.text("a")
+                                                    .att(
+                                                        "href",
+                                                        "https://github.com/andrewbaxter/semicompiled")
+                                                    .t("github.")))))
                     .build())
             .flatMap(s -> s)
             .forEachOrdered(
@@ -176,47 +190,50 @@ public class Generator {
         Stream.of(
             body()
                 .childN(Stream.of(Element.h1().t("Semicompiled"), Element.h2().t(test.title)))
-                .childN(
-                    test.files.entrySet().stream()
-                        .map(
-                            f ->
-                                pageSection(f.getKey())
-                                    .child(
-                                        Element.div()
-                                            .att("class", "tabs")
-                                            .childNSep(
-                                                test.files.entrySet().stream()
-                                                    .flatMap(e -> e.getValue().keySet().stream())
-                                                    .distinct()
-                                                    .map(
-                                                        e ->
-                                                            Element.text("a")
-                                                                .att("class", "sc-output-button")
-                                                                .att("href", "#" + e)
-                                                                .att("data-output", e)
-                                                                .t(e))))
-                                    .child(sectionPostGap())
-                                    .childN(
-                                        f.getValue().entrySet().stream()
-                                            .map(
-                                                c ->
-                                                    Element.container("div")
-                                                        .att("class", "pre-outer sc-output")
-                                                        .att("data-output", c.getKey())
-                                                        .att("style", "display: none;")
-                                                        .child(
-                                                            Element.container("pre")
-                                                                .child(
-                                                                    Element.text("code")
-                                                                        .att(
-                                                                            "class",
-                                                                            "language-"
-                                                                                + c.getValue()
-                                                                                    .first)
-                                                                        .t(
-                                                                            c.getValue()
-                                                                                .second)))))))
-                .childN(test.notes.stream()),
+                .childNSep(
+                    Utils.streamCat(
+                        test.files.entrySet().stream()
+                            .map(
+                                f ->
+                                    pageSection(f.getKey())
+                                        .child(
+                                            Element.div()
+                                                .att("class", "tabs")
+                                                .childNSep(
+                                                    test.files.entrySet().stream()
+                                                        .flatMap(
+                                                            e -> e.getValue().keySet().stream())
+                                                        .distinct()
+                                                        .map(
+                                                            e ->
+                                                                Element.text("a")
+                                                                    .att(
+                                                                        "class", "sc-output-button")
+                                                                    .att("href", "#" + e)
+                                                                    .att("data-output", e)
+                                                                    .t(e))))
+                                        .child(sectionPostGap())
+                                        .childN(
+                                            f.getValue().entrySet().stream()
+                                                .map(
+                                                    c ->
+                                                        Element.container("div")
+                                                            .att("class", "pre-outer sc-output")
+                                                            .att("data-output", c.getKey())
+                                                            .att("style", "display: none;")
+                                                            .child(
+                                                                Element.container("pre")
+                                                                    .child(
+                                                                        Element.text("code")
+                                                                            .att(
+                                                                                "class",
+                                                                                "language-"
+                                                                                    + c.getValue()
+                                                                                        .first)
+                                                                            .t(
+                                                                                c.getValue()
+                                                                                    .second)))))),
+                        test.notes.stream())),
             Element.div()
                 .att("class", "sidebar")
                 .child(

@@ -1,0 +1,23 @@
+jobs:
+  render:
+    if: contains( github.ref, 'master')
+    container: debian:11
+    steps:
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/semicache
+          key: cache
+          restore-keys: cache
+      - run: |
+        export APT_CACHE_DIR=`pwd`/semicache/apt-cache
+        mkdir -pv $APT_CACHE_DIR
+        export SC_MAVEN_DIR=`pwd`/semicache/maven
+        mkdir -pv $SC_MAVEN_DIR
+        apt-get update && apt-get install -y openjdk-11-jdk maven clang clang-format wabt emscripten
+        mvn -Dmaven.repo.local=$SC_MAVEN_DIR compile exec:java
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ~/public
