@@ -264,7 +264,7 @@ public class Generator {
         .map(
             leaf ->
                 Element.text("a")
-                    .att("href", String.format("%s%s", leafPath(leaf.get()), SOURCE))
+                    .att("href", String.format("%s#%s", leafPath(leaf.get()), SOURCE))
                     .att("data-selected", leaf.get().id.equals(test.id) ? "true" : "false")
                     .t(leaf.get().title));
   }
@@ -294,7 +294,11 @@ public class Generator {
 
   private Stream<Piece> buildIndexSectionLeaves(List<Threads.Future<Test>> tests) {
     return tests.stream()
-        .map(leaf -> Element.text("a").att("href", String.format("%s%s", leafPath(leaf.get()),SOURCE)).t(leaf.get().title));
+        .map(
+            leaf ->
+                Element.text("a")
+                    .att("href", String.format("%s#%s", leafPath(leaf.get()), SOURCE))
+                    .t(leaf.get().title));
   }
 
   private ContainerElement tocTop() {
