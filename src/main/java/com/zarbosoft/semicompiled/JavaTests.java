@@ -823,8 +823,28 @@ public class JavaTests {
             CodeBlock.of("$T x = $L;", type, keyValues.get(3 % keyValues.size()))),
         java0ArgsTest(
             id + "-RHLYQ82X",
-            "Read",
+            "Read/write",
             CodeBlock.of("$T x = $L;$T y = x;", type, keyValues.get(3 % keyValues.size()), type)),
+        new JavaTestBuilder(id + "-z4EZ08YJ", "Field read/write")
+            .editMain(
+                b -> {
+                  b.addField(FieldSpec.builder(type, "x").build());
+                })
+            .main(
+                CodeBlock.of(
+                    "Main m = new Main(); m.x = $L; $T y = m.x;",
+                    keyValues.get(3 % keyValues.size()),
+                    type))
+            .build(),
+        new JavaTestBuilder(id + "-zAYVOOX2", "Static field read/write")
+            .editMain(
+                b -> {
+                  b.addField(FieldSpec.builder(type, "x", Modifier.STATIC).build());
+                })
+            .main(
+                CodeBlock.of(
+                    "Main.x = $L; $T y = Main.x;", keyValues.get(3 % keyValues.size()), type))
+            .build(),
         java0ArgsTest(
             id + "-03r350PB",
             "Literals",

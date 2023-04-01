@@ -263,7 +263,12 @@ public class Generator {
         .map(
             leaf ->
                 Element.text("a")
-                    .att("href", leafPath(leaf.get()))
+                    .att(
+                        "href",
+                        String.format(
+                            "%s#%s",
+                            leafPath(leaf.get()),
+                            leaf.get().files.entrySet().iterator().next().getKey()))
                     .att("data-selected", leaf.get().id.equals(test.id) ? "true" : "false")
                     .t(leaf.get().title));
   }

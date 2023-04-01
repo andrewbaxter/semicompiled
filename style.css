@@ -95,7 +95,7 @@ body {
 }
 
 .footer a {
-  border-top: 1px solid var(--col-text-light);
+  border-top: 0.5mm solid var(--col-text-light);
 }
 
 .footer a:hover {
