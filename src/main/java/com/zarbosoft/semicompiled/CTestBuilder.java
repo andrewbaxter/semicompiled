@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.zarbosoft.semicompiled.Generator.SOURCE;
+
 public class CTestBuilder {
   private final String id;
   private final String title;
@@ -57,7 +59,7 @@ public class CTestBuilder {
             final LinkedHashMap<String, ROPair<String, String>> outFile =
                 out.files.computeIfAbsent(
                     source.getFileName().toString(), k -> new LinkedHashMap<>());
-            outFile.put("Source", new ROPair<>("c", Files.readString(source)));
+            outFile.put(SOURCE, new ROPair<>("c", Files.readString(source)));
             for (boolean debug : new boolean[] {false, true}) {
               String ir =
                   Utils.runOutput(

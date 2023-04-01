@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Generator {
+  public static final String SOURCE = "Source";
   public List<ROPair<TestGroup, List<Piece>>> topGroups = new ArrayList<>();
 
   public static void writePage(Path path, String title, Stream<Piece> body) {
@@ -263,12 +264,7 @@ public class Generator {
         .map(
             leaf ->
                 Element.text("a")
-                    .att(
-                        "href",
-                        String.format(
-                            "%s#%s",
-                            leafPath(leaf.get()),
-                            leaf.get().files.entrySet().iterator().next().getKey()))
+                    .att("href", String.format("%s%s", leafPath(leaf.get()), SOURCE))
                     .att("data-selected", leaf.get().id.equals(test.id) ? "true" : "false")
                     .t(leaf.get().title));
   }
@@ -298,7 +294,7 @@ public class Generator {
 
   private Stream<Piece> buildIndexSectionLeaves(List<Threads.Future<Test>> tests) {
     return tests.stream()
-        .map(leaf -> Element.text("a").att("href", leafPath(leaf.get())).t(leaf.get().title));
+        .map(leaf -> Element.text("a").att("href", String.format("%s%s", leafPath(leaf.get()),SOURCE)).t(leaf.get().title));
   }
 
   private ContainerElement tocTop() {

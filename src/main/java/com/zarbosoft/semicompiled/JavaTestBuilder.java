@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+import static com.zarbosoft.semicompiled.Generator.SOURCE;
 import static com.zarbosoft.semicompiled.Utils.run;
 
 public class JavaTestBuilder {
@@ -141,7 +142,7 @@ public class JavaTestBuilder {
               sources.add(classPath);
               out.files
                   .computeIfAbsent(classPath.getFileName().toString(), k -> new LinkedHashMap<>())
-                  .put("Source", new ROPair<>("java", formatJava(Files.readString(classPath))));
+                  .put(SOURCE, new ROPair<>("java", formatJava(Files.readString(classPath))));
             }
 
             for (boolean debug : new boolean[] {false, true}) {
