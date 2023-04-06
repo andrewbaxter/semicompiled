@@ -4,12 +4,12 @@ hljs.initLineNumbersOnLoad();
 
 import java.lang.IllegalArgumentException;
 import java.lang.NullPointerException;
-import java.lang.RuntimeException;
+import java.lang.System;
 
 class Main {
   public static void myMain() {
     try {
-      throw new RuntimeException();
+      System.out.println(&quot;Okay&quot;);
     } catch (NullPointerException e) {
       try {
         e.printStackTrace();
@@ -19,39 +19,50 @@ class Main {
     }
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-d3kdjP66-16768062039774780499/com/zarbosoft/semicompiled/Main.class
-  Last modified Apr 1, 2023; size 409 bytes
-  MD5 checksum 64b8f9bdfa7129ca34d0f73c1b48104e
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-d3kdjP66-848990602598246585/com/zarbosoft/semicompiled/Main.class
+  Last modified Apr 6, 2023; size 516 bytes
+  MD5 checksum 5144797784536a1b26ba95de22bb9de8
 class com.zarbosoft.semicompiled.Main
   minor version: 0
   major version: 52
   flags: (0x0020) ACC_SUPER
-  this_class: #8                          // com/zarbosoft/semicompiled/Main
-  super_class: #9                         // java/lang/Object
+  this_class: #9                          // com/zarbosoft/semicompiled/Main
+  super_class: #10                        // java/lang/Object
   interfaces: 0, fields: 0, methods: 2, attributes: 0
 Constant pool:
-   #1 = Methodref          #9.#15         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-   #2 = Class              #16            // java/lang/RuntimeException
-   #3 = Methodref          #2.#15         // java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-   #4 = Class              #17            // java/lang/NullPointerException
-   #5 = Methodref          #4.#18         // java/lang/NullPointerException.printStackTrace:()V
-   #6 = Class              #19            // java/lang/IllegalArgumentException
-   #7 = Methodref          #6.#18         // java/lang/IllegalArgumentException.printStackTrace:()V
-   #8 = Class              #20            // com/zarbosoft/semicompiled/Main
-   #9 = Class              #21            // java/lang/Object
-  #10 = Utf8               &lt;init&gt;
-  #11 = Utf8               ()V
-  #12 = Utf8               Code
-  #13 = Utf8               myMain
-  #14 = Utf8               StackMapTable
-  #15 = NameAndType        #10:#11        // &quot;&lt;init&gt;&quot;:()V
-  #16 = Utf8               java/lang/RuntimeException
-  #17 = Utf8               java/lang/NullPointerException
-  #18 = NameAndType        #22:#11        // printStackTrace:()V
-  #19 = Utf8               java/lang/IllegalArgumentException
-  #20 = Utf8               com/zarbosoft/semicompiled/Main
-  #21 = Utf8               java/lang/Object
-  #22 = Utf8               printStackTrace
+   #1 = Methodref          #10.#16        // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Fieldref           #17.#18        // java/lang/System.out:Ljava/io/PrintStream;
+   #3 = String             #19            // Okay
+   #4 = Methodref          #20.#21        // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #5 = Class              #22            // java/lang/NullPointerException
+   #6 = Methodref          #5.#23         // java/lang/NullPointerException.printStackTrace:()V
+   #7 = Class              #24            // java/lang/IllegalArgumentException
+   #8 = Methodref          #7.#23         // java/lang/IllegalArgumentException.printStackTrace:()V
+   #9 = Class              #25            // com/zarbosoft/semicompiled/Main
+  #10 = Class              #26            // java/lang/Object
+  #11 = Utf8               &lt;init&gt;
+  #12 = Utf8               ()V
+  #13 = Utf8               Code
+  #14 = Utf8               myMain
+  #15 = Utf8               StackMapTable
+  #16 = NameAndType        #11:#12        // &quot;&lt;init&gt;&quot;:()V
+  #17 = Class              #27            // java/lang/System
+  #18 = NameAndType        #28:#29        // out:Ljava/io/PrintStream;
+  #19 = Utf8               Okay
+  #20 = Class              #30            // java/io/PrintStream
+  #21 = NameAndType        #31:#32        // println:(Ljava/lang/String;)V
+  #22 = Utf8               java/lang/NullPointerException
+  #23 = NameAndType        #33:#12        // printStackTrace:()V
+  #24 = Utf8               java/lang/IllegalArgumentException
+  #25 = Utf8               com/zarbosoft/semicompiled/Main
+  #26 = Utf8               java/lang/Object
+  #27 = Utf8               java/lang/System
+  #28 = Utf8               out
+  #29 = Utf8               Ljava/io/PrintStream;
+  #30 = Utf8               java/io/PrintStream
+  #31 = Utf8               println
+  #32 = Utf8               (Ljava/lang/String;)V
+  #33 = Utf8               printStackTrace
 {
   com.zarbosoft.semicompiled.Main();
     descriptor: ()V
@@ -67,24 +78,24 @@ Constant pool:
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:
       stack=2, locals=2, args_size=0
-         0: new           #2                  // class java/lang/RuntimeException
-         3: dup
-         4: invokespecial #3                  // Method java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-         7: athrow
-         8: astore_0
-         9: aload_0
-        10: invokevirtual #5                  // Method java/lang/NullPointerException.printStackTrace:()V
-        13: goto          21
-        16: astore_1
-        17: aload_1
-        18: invokevirtual #7                  // Method java/lang/IllegalArgumentException.printStackTrace:()V
-        21: return
+         0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: ldc           #3                  // String Okay
+         5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+         8: goto          24
+        11: astore_0
+        12: aload_0
+        13: invokevirtual #6                  // Method java/lang/NullPointerException.printStackTrace:()V
+        16: goto          24
+        19: astore_1
+        20: aload_1
+        21: invokevirtual #8                  // Method java/lang/IllegalArgumentException.printStackTrace:()V
+        24: return
       Exception table:
          from    to  target type
-             0     8     8   Class java/lang/NullPointerException
-             9    13    16   Class java/lang/IllegalArgumentException
+             0     8    11   Class java/lang/NullPointerException
+            12    16    19   Class java/lang/IllegalArgumentException
       StackMapTable: number_of_entries = 3
-        frame_type = 72 /* same_locals_1_stack_item */
+        frame_type = 75 /* same_locals_1_stack_item */
           stack = [ class java/lang/NullPointerException ]
         frame_type = 255 /* full_frame */
           offset_delta = 7
@@ -136,30 +147,32 @@ public class MainDump implements Opcodes {
       methodVisitor.visitCode();
       Label label0 = new Label();
       Label label1 = new Label();
-      methodVisitor.visitTryCatchBlock(label0, label1, label1, &quot;java/lang/NullPointerException&quot;);
       Label label2 = new Label();
+      methodVisitor.visitTryCatchBlock(label0, label1, label2, &quot;java/lang/NullPointerException&quot;);
       Label label3 = new Label();
       Label label4 = new Label();
+      Label label5 = new Label();
       methodVisitor.visitTryCatchBlock(
-          label2, label3, label4, &quot;java/lang/IllegalArgumentException&quot;);
+          label3, label4, label5, &quot;java/lang/IllegalArgumentException&quot;);
       methodVisitor.visitLabel(label0);
-      methodVisitor.visitTypeInsn(NEW, &quot;java/lang/RuntimeException&quot;);
-      methodVisitor.visitInsn(DUP);
+      methodVisitor.visitFieldInsn(GETSTATIC, &quot;java/lang/System&quot;, &quot;out&quot;, &quot;Ljava/io/PrintStream;&quot;);
+      methodVisitor.visitLdcInsn(&quot;Okay&quot;);
       methodVisitor.visitMethodInsn(
-          INVOKESPECIAL, &quot;java/lang/RuntimeException&quot;, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitInsn(ATHROW);
+          INVOKEVIRTUAL, &quot;java/io/PrintStream&quot;, &quot;println&quot;, &quot;(Ljava/lang/String;)V&quot;, false);
       methodVisitor.visitLabel(label1);
+      Label label6 = new Label();
+      methodVisitor.visitJumpInsn(GOTO, label6);
+      methodVisitor.visitLabel(label2);
       methodVisitor.visitFrame(
           Opcodes.F_SAME1, 0, null, 1, new Object[] {&quot;java/lang/NullPointerException&quot;});
       methodVisitor.visitVarInsn(ASTORE, 0);
-      methodVisitor.visitLabel(label2);
+      methodVisitor.visitLabel(label3);
       methodVisitor.visitVarInsn(ALOAD, 0);
       methodVisitor.visitMethodInsn(
           INVOKEVIRTUAL, &quot;java/lang/NullPointerException&quot;, &quot;printStackTrace&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitLabel(label3);
-      Label label5 = new Label();
-      methodVisitor.visitJumpInsn(GOTO, label5);
       methodVisitor.visitLabel(label4);
+      methodVisitor.visitJumpInsn(GOTO, label6);
+      methodVisitor.visitLabel(label5);
       methodVisitor.visitFrame(
           Opcodes.F_FULL,
           1,
@@ -170,7 +183,7 @@ public class MainDump implements Opcodes {
       methodVisitor.visitVarInsn(ALOAD, 1);
       methodVisitor.visitMethodInsn(
           INVOKEVIRTUAL, &quot;java/lang/IllegalArgumentException&quot;, &quot;printStackTrace&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitLabel(label5);
+      methodVisitor.visitLabel(label6);
       methodVisitor.visitFrame(Opcodes.F_CHOP, 1, null, 0, null);
       methodVisitor.visitInsn(RETURN);
       methodVisitor.visitMaxs(2, 2);
@@ -181,50 +194,61 @@ public class MainDump implements Opcodes {
     return classWriter.toByteArray();
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-d3kdjP66-16768062039774780499/com/zarbosoft/semicompiled/Main.class
-  Last modified Apr 1, 2023; size 681 bytes
-  MD5 checksum a5997cbad7fd9782ac6ed1b849cc18a3
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-d3kdjP66-848990602598246585/com/zarbosoft/semicompiled/Main.class
+  Last modified Apr 6, 2023; size 788 bytes
+  MD5 checksum a8be5de119a612a20628afac28ae0bf4
   Compiled from &quot;Main.java&quot;
 class com.zarbosoft.semicompiled.Main
   minor version: 0
   major version: 52
   flags: (0x0020) ACC_SUPER
-  this_class: #8                          // com/zarbosoft/semicompiled/Main
-  super_class: #9                         // java/lang/Object
+  this_class: #9                          // com/zarbosoft/semicompiled/Main
+  super_class: #10                        // java/lang/Object
   interfaces: 0, fields: 0, methods: 2, attributes: 1
 Constant pool:
-   #1 = Methodref          #9.#25         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-   #2 = Class              #26            // java/lang/RuntimeException
-   #3 = Methodref          #2.#25         // java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-   #4 = Class              #27            // java/lang/NullPointerException
-   #5 = Methodref          #4.#28         // java/lang/NullPointerException.printStackTrace:()V
-   #6 = Class              #29            // java/lang/IllegalArgumentException
-   #7 = Methodref          #6.#28         // java/lang/IllegalArgumentException.printStackTrace:()V
-   #8 = Class              #30            // com/zarbosoft/semicompiled/Main
-   #9 = Class              #31            // java/lang/Object
-  #10 = Utf8               &lt;init&gt;
-  #11 = Utf8               ()V
-  #12 = Utf8               Code
-  #13 = Utf8               LineNumberTable
-  #14 = Utf8               LocalVariableTable
-  #15 = Utf8               this
-  #16 = Utf8               Lcom/zarbosoft/semicompiled/Main;
-  #17 = Utf8               myMain
-  #18 = Utf8               e1
-  #19 = Utf8               Ljava/lang/IllegalArgumentException;
-  #20 = Utf8               e
-  #21 = Utf8               Ljava/lang/NullPointerException;
-  #22 = Utf8               StackMapTable
-  #23 = Utf8               SourceFile
-  #24 = Utf8               Main.java
-  #25 = NameAndType        #10:#11        // &quot;&lt;init&gt;&quot;:()V
-  #26 = Utf8               java/lang/RuntimeException
-  #27 = Utf8               java/lang/NullPointerException
-  #28 = NameAndType        #32:#11        // printStackTrace:()V
-  #29 = Utf8               java/lang/IllegalArgumentException
-  #30 = Utf8               com/zarbosoft/semicompiled/Main
-  #31 = Utf8               java/lang/Object
-  #32 = Utf8               printStackTrace
+   #1 = Methodref          #10.#26        // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Fieldref           #27.#28        // java/lang/System.out:Ljava/io/PrintStream;
+   #3 = String             #29            // Okay
+   #4 = Methodref          #30.#31        // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #5 = Class              #32            // java/lang/NullPointerException
+   #6 = Methodref          #5.#33         // java/lang/NullPointerException.printStackTrace:()V
+   #7 = Class              #34            // java/lang/IllegalArgumentException
+   #8 = Methodref          #7.#33         // java/lang/IllegalArgumentException.printStackTrace:()V
+   #9 = Class              #35            // com/zarbosoft/semicompiled/Main
+  #10 = Class              #36            // java/lang/Object
+  #11 = Utf8               &lt;init&gt;
+  #12 = Utf8               ()V
+  #13 = Utf8               Code
+  #14 = Utf8               LineNumberTable
+  #15 = Utf8               LocalVariableTable
+  #16 = Utf8               this
+  #17 = Utf8               Lcom/zarbosoft/semicompiled/Main;
+  #18 = Utf8               myMain
+  #19 = Utf8               e1
+  #20 = Utf8               Ljava/lang/IllegalArgumentException;
+  #21 = Utf8               e
+  #22 = Utf8               Ljava/lang/NullPointerException;
+  #23 = Utf8               StackMapTable
+  #24 = Utf8               SourceFile
+  #25 = Utf8               Main.java
+  #26 = NameAndType        #11:#12        // &quot;&lt;init&gt;&quot;:()V
+  #27 = Class              #37            // java/lang/System
+  #28 = NameAndType        #38:#39        // out:Ljava/io/PrintStream;
+  #29 = Utf8               Okay
+  #30 = Class              #40            // java/io/PrintStream
+  #31 = NameAndType        #41:#42        // println:(Ljava/lang/String;)V
+  #32 = Utf8               java/lang/NullPointerException
+  #33 = NameAndType        #43:#12        // printStackTrace:()V
+  #34 = Utf8               java/lang/IllegalArgumentException
+  #35 = Utf8               com/zarbosoft/semicompiled/Main
+  #36 = Utf8               java/lang/Object
+  #37 = Utf8               java/lang/System
+  #38 = Utf8               out
+  #39 = Utf8               Ljava/io/PrintStream;
+  #40 = Utf8               java/io/PrintStream
+  #41 = Utf8               println
+  #42 = Utf8               (Ljava/lang/String;)V
+  #43 = Utf8               printStackTrace
 {
   com.zarbosoft.semicompiled.Main();
     descriptor: ()V
@@ -245,31 +269,31 @@ Constant pool:
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:
       stack=2, locals=2, args_size=0
-         0: new           #2                  // class java/lang/RuntimeException
-         3: dup
-         4: invokespecial #3                  // Method java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-         7: athrow
-         8: astore_0
-         9: aload_0
-        10: invokevirtual #5                  // Method java/lang/NullPointerException.printStackTrace:()V
-        13: goto          21
-        16: astore_1
-        17: aload_1
-        18: invokevirtual #7                  // Method java/lang/IllegalArgumentException.printStackTrace:()V
-        21: return
+         0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: ldc           #3                  // String Okay
+         5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+         8: goto          24
+        11: astore_0
+        12: aload_0
+        13: invokevirtual #6                  // Method java/lang/NullPointerException.printStackTrace:()V
+        16: goto          24
+        19: astore_1
+        20: aload_1
+        21: invokevirtual #8                  // Method java/lang/IllegalArgumentException.printStackTrace:()V
+        24: return
       Exception table:
          from    to  target type
-             0     8     8   Class java/lang/NullPointerException
-             9    13    16   Class java/lang/IllegalArgumentException
+             0     8    11   Class java/lang/NullPointerException
+            12    16    19   Class java/lang/IllegalArgumentException
       LineNumberTable:
         line 9: 0
-        line 10: 21
+        line 10: 24
       LocalVariableTable:
         Start  Length  Slot  Name   Signature
-           17       4     1    e1   Ljava/lang/IllegalArgumentException;
-            9      12     0     e   Ljava/lang/NullPointerException;
+           20       4     1    e1   Ljava/lang/IllegalArgumentException;
+           12      12     0     e   Ljava/lang/NullPointerException;
       StackMapTable: number_of_entries = 3
-        frame_type = 72 /* same_locals_1_stack_item */
+        frame_type = 75 /* same_locals_1_stack_item */
           stack = [ class java/lang/NullPointerException ]
         frame_type = 255 /* full_frame */
           offset_delta = 7
@@ -331,31 +355,33 @@ public class MainDump implements Opcodes {
       methodVisitor.visitCode();
       Label label0 = new Label();
       Label label1 = new Label();
-      methodVisitor.visitTryCatchBlock(label0, label1, label1, &quot;java/lang/NullPointerException&quot;);
       Label label2 = new Label();
+      methodVisitor.visitTryCatchBlock(label0, label1, label2, &quot;java/lang/NullPointerException&quot;);
       Label label3 = new Label();
       Label label4 = new Label();
+      Label label5 = new Label();
       methodVisitor.visitTryCatchBlock(
-          label2, label3, label4, &quot;java/lang/IllegalArgumentException&quot;);
+          label3, label4, label5, &quot;java/lang/IllegalArgumentException&quot;);
       methodVisitor.visitLabel(label0);
       methodVisitor.visitLineNumber(9, label0);
-      methodVisitor.visitTypeInsn(NEW, &quot;java/lang/RuntimeException&quot;);
-      methodVisitor.visitInsn(DUP);
+      methodVisitor.visitFieldInsn(GETSTATIC, &quot;java/lang/System&quot;, &quot;out&quot;, &quot;Ljava/io/PrintStream;&quot;);
+      methodVisitor.visitLdcInsn(&quot;Okay&quot;);
       methodVisitor.visitMethodInsn(
-          INVOKESPECIAL, &quot;java/lang/RuntimeException&quot;, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitInsn(ATHROW);
+          INVOKEVIRTUAL, &quot;java/io/PrintStream&quot;, &quot;println&quot;, &quot;(Ljava/lang/String;)V&quot;, false);
       methodVisitor.visitLabel(label1);
+      Label label6 = new Label();
+      methodVisitor.visitJumpInsn(GOTO, label6);
+      methodVisitor.visitLabel(label2);
       methodVisitor.visitFrame(
           Opcodes.F_SAME1, 0, null, 1, new Object[] {&quot;java/lang/NullPointerException&quot;});
       methodVisitor.visitVarInsn(ASTORE, 0);
-      methodVisitor.visitLabel(label2);
+      methodVisitor.visitLabel(label3);
       methodVisitor.visitVarInsn(ALOAD, 0);
       methodVisitor.visitMethodInsn(
           INVOKEVIRTUAL, &quot;java/lang/NullPointerException&quot;, &quot;printStackTrace&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitLabel(label3);
-      Label label5 = new Label();
-      methodVisitor.visitJumpInsn(GOTO, label5);
       methodVisitor.visitLabel(label4);
+      methodVisitor.visitJumpInsn(GOTO, label6);
+      methodVisitor.visitLabel(label5);
       methodVisitor.visitFrame(
           Opcodes.F_FULL,
           1,
@@ -363,19 +389,19 @@ public class MainDump implements Opcodes {
           1,
           new Object[] {&quot;java/lang/IllegalArgumentException&quot;});
       methodVisitor.visitVarInsn(ASTORE, 1);
-      Label label6 = new Label();
-      methodVisitor.visitLabel(label6);
+      Label label7 = new Label();
+      methodVisitor.visitLabel(label7);
       methodVisitor.visitVarInsn(ALOAD, 1);
       methodVisitor.visitMethodInsn(
           INVOKEVIRTUAL, &quot;java/lang/IllegalArgumentException&quot;, &quot;printStackTrace&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitLabel(label5);
-      methodVisitor.visitLineNumber(10, label5);
+      methodVisitor.visitLabel(label6);
+      methodVisitor.visitLineNumber(10, label6);
       methodVisitor.visitFrame(Opcodes.F_CHOP, 1, null, 0, null);
       methodVisitor.visitInsn(RETURN);
       methodVisitor.visitLocalVariable(
-          &quot;e1&quot;, &quot;Ljava/lang/IllegalArgumentException;&quot;, null, label6, label5, 1);
+          &quot;e1&quot;, &quot;Ljava/lang/IllegalArgumentException;&quot;, null, label7, label6, 1);
       methodVisitor.visitLocalVariable(
-          &quot;e&quot;, &quot;Ljava/lang/NullPointerException;&quot;, null, label2, label5, 0);
+          &quot;e&quot;, &quot;Ljava/lang/NullPointerException;&quot;, null, label3, label6, 0);
       methodVisitor.visitMaxs(2, 2);
       methodVisitor.visitEnd();
     }

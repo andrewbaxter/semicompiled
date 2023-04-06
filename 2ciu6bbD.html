@@ -2,44 +2,55 @@
 hljs.initLineNumbersOnLoad();
 </script><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&amp;display=swap" /><link rel="stylesheet" href="style.css"></link><script src="util.js"></script></head><body><div class="body"><h1>Semicompiled</h1><h2>Try, finally</h2><div class="section"><span class="section-title">Main.java</span><div class="tabs"><a class="sc-output-button" href="#Source" data-output="Source">Source</a><div class="sep"></div><a class="sc-output-button" href="#Bytecode" data-output="Bytecode">Bytecode</a><div class="sep"></div><a class="sc-output-button" href="#ASMifier" data-output="ASMifier">ASMifier</a><div class="sep"></div><a class="sc-output-button" href="#Bytecode (debug)" data-output="Bytecode (debug)">Bytecode (debug)</a><div class="sep"></div><a class="sc-output-button" href="#ASMifier (debug)" data-output="ASMifier (debug)">ASMifier (debug)</a></div><div class="section-gap"></div><div class="pre-outer sc-output" data-output="Source" style="display: none;"><pre><code class="language-java">package com.zarbosoft.semicompiled;
 
-import java.lang.RuntimeException;
+import java.lang.System;
 
 class Main {
   public static void myMain() {
     try {
-      throw new RuntimeException();
+      System.out.println(&quot;Okay&quot;);
     } finally {
       int x = 72;
     }
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-2ciu6bbD-6594904991931459227/com/zarbosoft/semicompiled/Main.class
-  Last modified Apr 1, 2023; size 293 bytes
-  MD5 checksum 974002911da59af389f82ee5b8c6d7b4
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-2ciu6bbD-9312185325841549388/com/zarbosoft/semicompiled/Main.class
+  Last modified Apr 6, 2023; size 405 bytes
+  MD5 checksum 9a58e154f5533ab6c79448925fc4fc93
 class com.zarbosoft.semicompiled.Main
   minor version: 0
   major version: 52
   flags: (0x0020) ACC_SUPER
-  this_class: #4                          // com/zarbosoft/semicompiled/Main
-  super_class: #5                         // java/lang/Object
+  this_class: #5                          // com/zarbosoft/semicompiled/Main
+  super_class: #6                         // java/lang/Object
   interfaces: 0, fields: 0, methods: 2, attributes: 0
 Constant pool:
-   #1 = Methodref          #5.#12         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-   #2 = Class              #13            // java/lang/RuntimeException
-   #3 = Methodref          #2.#12         // java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-   #4 = Class              #14            // com/zarbosoft/semicompiled/Main
-   #5 = Class              #15            // java/lang/Object
-   #6 = Utf8               &lt;init&gt;
-   #7 = Utf8               ()V
-   #8 = Utf8               Code
-   #9 = Utf8               myMain
-  #10 = Utf8               StackMapTable
-  #11 = Class              #16            // java/lang/Throwable
-  #12 = NameAndType        #6:#7          // &quot;&lt;init&gt;&quot;:()V
-  #13 = Utf8               java/lang/RuntimeException
-  #14 = Utf8               com/zarbosoft/semicompiled/Main
-  #15 = Utf8               java/lang/Object
-  #16 = Utf8               java/lang/Throwable
+   #1 = Methodref          #6.#13         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Fieldref           #14.#15        // java/lang/System.out:Ljava/io/PrintStream;
+   #3 = String             #16            // Okay
+   #4 = Methodref          #17.#18        // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #5 = Class              #19            // com/zarbosoft/semicompiled/Main
+   #6 = Class              #20            // java/lang/Object
+   #7 = Utf8               &lt;init&gt;
+   #8 = Utf8               ()V
+   #9 = Utf8               Code
+  #10 = Utf8               myMain
+  #11 = Utf8               StackMapTable
+  #12 = Class              #21            // java/lang/Throwable
+  #13 = NameAndType        #7:#8          // &quot;&lt;init&gt;&quot;:()V
+  #14 = Class              #22            // java/lang/System
+  #15 = NameAndType        #23:#24        // out:Ljava/io/PrintStream;
+  #16 = Utf8               Okay
+  #17 = Class              #25            // java/io/PrintStream
+  #18 = NameAndType        #26:#27        // println:(Ljava/lang/String;)V
+  #19 = Utf8               com/zarbosoft/semicompiled/Main
+  #20 = Utf8               java/lang/Object
+  #21 = Utf8               java/lang/Throwable
+  #22 = Utf8               java/lang/System
+  #23 = Utf8               out
+  #24 = Utf8               Ljava/io/PrintStream;
+  #25 = Utf8               java/io/PrintStream
+  #26 = Utf8               println
+  #27 = Utf8               (Ljava/lang/String;)V
 {
   com.zarbosoft.semicompiled.Main();
     descriptor: ()V
@@ -54,22 +65,26 @@ Constant pool:
     descriptor: ()V
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:
-      stack=2, locals=2, args_size=0
-         0: new           #2                  // class java/lang/RuntimeException
-         3: dup
-         4: invokespecial #3                  // Method java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-         7: athrow
-         8: astore_0
-         9: bipush        72
-        11: istore_1
-        12: aload_0
-        13: athrow
+      stack=2, locals=3, args_size=0
+         0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: ldc           #3                  // String Okay
+         5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+         8: bipush        72
+        10: istore_0
+        11: goto          20
+        14: astore_1
+        15: bipush        72
+        17: istore_2
+        18: aload_1
+        19: athrow
+        20: return
       Exception table:
          from    to  target type
-             0     9     8   any
-      StackMapTable: number_of_entries = 1
-        frame_type = 72 /* same_locals_1_stack_item */
+             0     8    14   any
+      StackMapTable: number_of_entries = 2
+        frame_type = 78 /* same_locals_1_stack_item */
           stack = [ class java/lang/Throwable ]
+        frame_type = 5 /* same */
 }
 </code></pre></div><div class="pre-outer sc-output" data-output="ASMifier" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
 
@@ -117,20 +132,26 @@ public class MainDump implements Opcodes {
       Label label2 = new Label();
       methodVisitor.visitTryCatchBlock(label0, label1, label2, null);
       methodVisitor.visitLabel(label0);
-      methodVisitor.visitTypeInsn(NEW, &quot;java/lang/RuntimeException&quot;);
-      methodVisitor.visitInsn(DUP);
+      methodVisitor.visitFieldInsn(GETSTATIC, &quot;java/lang/System&quot;, &quot;out&quot;, &quot;Ljava/io/PrintStream;&quot;);
+      methodVisitor.visitLdcInsn(&quot;Okay&quot;);
       methodVisitor.visitMethodInsn(
-          INVOKESPECIAL, &quot;java/lang/RuntimeException&quot;, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitInsn(ATHROW);
-      methodVisitor.visitLabel(label2);
-      methodVisitor.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {&quot;java/lang/Throwable&quot;});
-      methodVisitor.visitVarInsn(ASTORE, 0);
+          INVOKEVIRTUAL, &quot;java/io/PrintStream&quot;, &quot;println&quot;, &quot;(Ljava/lang/String;)V&quot;, false);
       methodVisitor.visitLabel(label1);
       methodVisitor.visitIntInsn(BIPUSH, 72);
-      methodVisitor.visitVarInsn(ISTORE, 1);
-      methodVisitor.visitVarInsn(ALOAD, 0);
+      methodVisitor.visitVarInsn(ISTORE, 0);
+      Label label3 = new Label();
+      methodVisitor.visitJumpInsn(GOTO, label3);
+      methodVisitor.visitLabel(label2);
+      methodVisitor.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {&quot;java/lang/Throwable&quot;});
+      methodVisitor.visitVarInsn(ASTORE, 1);
+      methodVisitor.visitIntInsn(BIPUSH, 72);
+      methodVisitor.visitVarInsn(ISTORE, 2);
+      methodVisitor.visitVarInsn(ALOAD, 1);
       methodVisitor.visitInsn(ATHROW);
-      methodVisitor.visitMaxs(2, 2);
+      methodVisitor.visitLabel(label3);
+      methodVisitor.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
+      methodVisitor.visitInsn(RETURN);
+      methodVisitor.visitMaxs(2, 3);
       methodVisitor.visitEnd();
     }
     classWriter.visitEnd();
@@ -138,40 +159,51 @@ public class MainDump implements Opcodes {
     return classWriter.toByteArray();
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-2ciu6bbD-6594904991931459227/com/zarbosoft/semicompiled/Main.class
-  Last modified Apr 1, 2023; size 458 bytes
-  MD5 checksum 619c82df8e9eea4ddd2454972273ec2f
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-2ciu6bbD-9312185325841549388/com/zarbosoft/semicompiled/Main.class
+  Last modified Apr 6, 2023; size 574 bytes
+  MD5 checksum dfa10093dc1c673bc7416fcdef7b469a
   Compiled from &quot;Main.java&quot;
 class com.zarbosoft.semicompiled.Main
   minor version: 0
   major version: 52
   flags: (0x0020) ACC_SUPER
-  this_class: #4                          // com/zarbosoft/semicompiled/Main
-  super_class: #5                         // java/lang/Object
+  this_class: #5                          // com/zarbosoft/semicompiled/Main
+  super_class: #6                         // java/lang/Object
   interfaces: 0, fields: 0, methods: 2, attributes: 1
 Constant pool:
-   #1 = Methodref          #5.#18         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-   #2 = Class              #19            // java/lang/RuntimeException
-   #3 = Methodref          #2.#18         // java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-   #4 = Class              #20            // com/zarbosoft/semicompiled/Main
-   #5 = Class              #21            // java/lang/Object
-   #6 = Utf8               &lt;init&gt;
-   #7 = Utf8               ()V
-   #8 = Utf8               Code
-   #9 = Utf8               LineNumberTable
-  #10 = Utf8               LocalVariableTable
-  #11 = Utf8               this
-  #12 = Utf8               Lcom/zarbosoft/semicompiled/Main;
-  #13 = Utf8               myMain
-  #14 = Utf8               StackMapTable
-  #15 = Class              #22            // java/lang/Throwable
-  #16 = Utf8               SourceFile
-  #17 = Utf8               Main.java
-  #18 = NameAndType        #6:#7          // &quot;&lt;init&gt;&quot;:()V
-  #19 = Utf8               java/lang/RuntimeException
-  #20 = Utf8               com/zarbosoft/semicompiled/Main
-  #21 = Utf8               java/lang/Object
-  #22 = Utf8               java/lang/Throwable
+   #1 = Methodref          #6.#19         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Fieldref           #20.#21        // java/lang/System.out:Ljava/io/PrintStream;
+   #3 = String             #22            // Okay
+   #4 = Methodref          #23.#24        // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #5 = Class              #25            // com/zarbosoft/semicompiled/Main
+   #6 = Class              #26            // java/lang/Object
+   #7 = Utf8               &lt;init&gt;
+   #8 = Utf8               ()V
+   #9 = Utf8               Code
+  #10 = Utf8               LineNumberTable
+  #11 = Utf8               LocalVariableTable
+  #12 = Utf8               this
+  #13 = Utf8               Lcom/zarbosoft/semicompiled/Main;
+  #14 = Utf8               myMain
+  #15 = Utf8               StackMapTable
+  #16 = Class              #27            // java/lang/Throwable
+  #17 = Utf8               SourceFile
+  #18 = Utf8               Main.java
+  #19 = NameAndType        #7:#8          // &quot;&lt;init&gt;&quot;:()V
+  #20 = Class              #28            // java/lang/System
+  #21 = NameAndType        #29:#30        // out:Ljava/io/PrintStream;
+  #22 = Utf8               Okay
+  #23 = Class              #31            // java/io/PrintStream
+  #24 = NameAndType        #32:#33        // println:(Ljava/lang/String;)V
+  #25 = Utf8               com/zarbosoft/semicompiled/Main
+  #26 = Utf8               java/lang/Object
+  #27 = Utf8               java/lang/Throwable
+  #28 = Utf8               java/lang/System
+  #29 = Utf8               out
+  #30 = Utf8               Ljava/io/PrintStream;
+  #31 = Utf8               java/io/PrintStream
+  #32 = Utf8               println
+  #33 = Utf8               (Ljava/lang/String;)V
 {
   com.zarbosoft.semicompiled.Main();
     descriptor: ()V
@@ -191,26 +223,31 @@ Constant pool:
     descriptor: ()V
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:
-      stack=2, locals=2, args_size=0
-         0: new           #2                  // class java/lang/RuntimeException
-         3: dup
-         4: invokespecial #3                  // Method java/lang/RuntimeException.&quot;&lt;init&gt;&quot;:()V
-         7: athrow
-         8: astore_0
-         9: bipush        72
-        11: istore_1
-        12: aload_0
-        13: athrow
+      stack=2, locals=3, args_size=0
+         0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: ldc           #3                  // String Okay
+         5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+         8: bipush        72
+        10: istore_0
+        11: goto          20
+        14: astore_1
+        15: bipush        72
+        17: istore_2
+        18: aload_1
+        19: athrow
+        20: return
       Exception table:
          from    to  target type
-             0     9     8   any
+             0     8    14   any
       LineNumberTable:
         line 7: 0
+        line 8: 20
       LocalVariableTable:
         Start  Length  Slot  Name   Signature
-      StackMapTable: number_of_entries = 1
-        frame_type = 72 /* same_locals_1_stack_item */
+      StackMapTable: number_of_entries = 2
+        frame_type = 78 /* same_locals_1_stack_item */
           stack = [ class java/lang/Throwable ]
+        frame_type = 5 /* same */
 }
 SourceFile: &quot;Main.java&quot;
 </code></pre></div><div class="pre-outer sc-output" data-output="ASMifier (debug)" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
@@ -269,20 +306,27 @@ public class MainDump implements Opcodes {
       methodVisitor.visitTryCatchBlock(label0, label1, label2, null);
       methodVisitor.visitLabel(label0);
       methodVisitor.visitLineNumber(7, label0);
-      methodVisitor.visitTypeInsn(NEW, &quot;java/lang/RuntimeException&quot;);
-      methodVisitor.visitInsn(DUP);
+      methodVisitor.visitFieldInsn(GETSTATIC, &quot;java/lang/System&quot;, &quot;out&quot;, &quot;Ljava/io/PrintStream;&quot;);
+      methodVisitor.visitLdcInsn(&quot;Okay&quot;);
       methodVisitor.visitMethodInsn(
-          INVOKESPECIAL, &quot;java/lang/RuntimeException&quot;, &quot;&lt;init&gt;&quot;, &quot;()V&quot;, false);
-      methodVisitor.visitInsn(ATHROW);
-      methodVisitor.visitLabel(label2);
-      methodVisitor.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {&quot;java/lang/Throwable&quot;});
-      methodVisitor.visitVarInsn(ASTORE, 0);
+          INVOKEVIRTUAL, &quot;java/io/PrintStream&quot;, &quot;println&quot;, &quot;(Ljava/lang/String;)V&quot;, false);
       methodVisitor.visitLabel(label1);
       methodVisitor.visitIntInsn(BIPUSH, 72);
-      methodVisitor.visitVarInsn(ISTORE, 1);
-      methodVisitor.visitVarInsn(ALOAD, 0);
+      methodVisitor.visitVarInsn(ISTORE, 0);
+      Label label3 = new Label();
+      methodVisitor.visitJumpInsn(GOTO, label3);
+      methodVisitor.visitLabel(label2);
+      methodVisitor.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {&quot;java/lang/Throwable&quot;});
+      methodVisitor.visitVarInsn(ASTORE, 1);
+      methodVisitor.visitIntInsn(BIPUSH, 72);
+      methodVisitor.visitVarInsn(ISTORE, 2);
+      methodVisitor.visitVarInsn(ALOAD, 1);
       methodVisitor.visitInsn(ATHROW);
-      methodVisitor.visitMaxs(2, 2);
+      methodVisitor.visitLabel(label3);
+      methodVisitor.visitLineNumber(8, label3);
+      methodVisitor.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
+      methodVisitor.visitInsn(RETURN);
+      methodVisitor.visitMaxs(2, 3);
       methodVisitor.visitEnd();
     }
     classWriter.visitEnd();
