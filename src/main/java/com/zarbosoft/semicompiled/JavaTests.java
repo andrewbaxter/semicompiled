@@ -225,45 +225,45 @@ public class JavaTests {
                                 "2ciu6bbD",
                                 "Try, finally",
                                 CodeBlock.of(
-                                    "try { throw new $T(); } finally { int x = 72; }",
-                                    RuntimeException.class)),
+                                    "try { $T.out.println(\"Okay\"); } finally { int x = 72; }",
+                                    System.class)),
                             java0ArgsTest(
                                 "p56NWWXO",
                                 "Try, catch, finally",
                                 CodeBlock.of(
-                                    "try { throw new $T(); } catch ($T e) { e.printStackTrace(); } finally { int w = 3131; }",
-                                    RuntimeException.class,
+                                    "try { $T.out.println(\"Okay\"); } catch ($T e) { e.printStackTrace(); } finally { int w = 3131; }",
+                                    System.class,
                                     RuntimeException.class)),
                             java0ArgsTest(
                                 "J65TEQ3F",
                                 "Try, multiple catch",
                                 CodeBlock.of(
-                                    "try { throw new $T(); } catch ($T e) { e.printStackTrace(); } catch ($T e) { int q = 1; }",
-                                    RuntimeException.class,
+                                    "try { $T.out.println(\"Okay\"); } catch ($T e) { e.printStackTrace(); } catch ($T e) { int q = 1; }",
+                                    System.class,
                                     RuntimeException.class,
                                     Throwable.class)),
                             java0ArgsTest(
                                 "vgWtbZJp",
                                 "Try, catch multiple types",
                                 CodeBlock.of(
-                                    "try { throw new $T(); } catch ($T | $T e) { e.printStackTrace(); }",
-                                    RuntimeException.class,
+                                    "try { $T.out.println(\"Okay\"); } catch ($T | $T e) { e.printStackTrace(); }",
+                                    System.class,
                                     NullPointerException.class,
                                     IllegalArgumentException.class)),
                             java0ArgsTest(
                                 "7SQ338gD",
                                 "Nested-try, catch",
                                 CodeBlock.of(
-                                    "try { try { throw new $T(); } catch ($T e) { e.printStackTrace(); } } catch ($T e) { e.printStackTrace(); }",
-                                    RuntimeException.class,
+                                    "try { try { $T.out.println(\"Okay\"); } catch ($T e) { e.printStackTrace(); } } catch ($T e) { e.printStackTrace(); }",
+                                    System.class,
                                     NullPointerException.class,
                                     IllegalArgumentException.class)),
                             java0ArgsTest(
                                 "d3kdjP66",
                                 "Try, nested-catch",
                                 CodeBlock.of(
-                                    "try { throw new $T(); } catch ($T e) { try { e.printStackTrace(); } catch ($T e1) { e1.printStackTrace(); } }",
-                                    RuntimeException.class,
+                                    "try { $T.out.println(\"Okay\"); } catch ($T e) { try { e.printStackTrace(); } catch ($T e1) { e1.printStackTrace(); } }",
+                                    System.class,
                                     NullPointerException.class,
                                     IllegalArgumentException.class))),
                         Stream.of()))),
