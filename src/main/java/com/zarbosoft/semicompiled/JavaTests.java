@@ -228,6 +228,20 @@ public class JavaTests {
                                     "try { $T.out.println(\"Okay\"); } finally { int x = 72; }",
                                     System.class)),
                             java0ArgsTest(
+                                "z5IEY18T",
+                                "Try, finally, break",
+                                CodeBlock.of(
+                                    "int z = 3; "
+                                        + "for (int i = 0; i < 1; ++i) { "
+                                        + "try { "
+                                        + "if (z == 3) { "
+                                        + "break; "
+                                        + "} "
+                                        + "$T.out.println(\"Okay\"); "
+                                        + "} finally { int x = 72; } "
+                                        + "}",
+                                    System.class)),
+                            java0ArgsTest(
                                 "p56NWWXO",
                                 "Try, catch, finally",
                                 CodeBlock.of(
