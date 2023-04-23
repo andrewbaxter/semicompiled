@@ -10,6 +10,7 @@ import com.squareup.javapoet.TypeSpec;
 
 import javax.lang.model.element.Modifier;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -128,6 +129,31 @@ public class JavaTests {
                                     "Element read",
                                     CodeBlock.of(
                                         "$T x = new $T[]{3}; int y = x[0];", type, int.class))),
+                            Stream.of());
+                      }
+                    }.get(),
+                    new Supplier<TestGroup>() {
+                      @Override
+                      public TestGroup get() {
+                        return new TestGroup(
+                            "Generic",
+                            Stream.of(
+                                java0ArgsTest(
+                                    "zCEP8I24",
+                                    "Argument",
+                                    CodeBlock.of(
+                                        "$T x = new $T<>(); x.add($S);",
+                                        List.class,
+                                        ArrayList.class,
+                                        "hello")),
+                                java0ArgsTest(
+                                    "zQSFZH7I",
+                                    "Return",
+                                    CodeBlock.of(
+                                        "$T x = new $T<>(); $T y = x.get(0);",
+                                        List.class,
+                                        ArrayList.class,
+                                        String.class))),
                             Stream.of());
                       }
                     }.get())),
