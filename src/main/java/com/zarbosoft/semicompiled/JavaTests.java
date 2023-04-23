@@ -12,6 +12,7 @@ import javax.lang.model.element.Modifier;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -142,17 +143,17 @@ public class JavaTests {
                                     "zCEP8I24",
                                     "Argument",
                                     CodeBlock.of(
-                                        "$T x = new $T<>(); x.add($S);",
-                                        List.class,
-                                        ArrayList.class,
+                                        "$T<$T> x = null; x.accept($S);",
+                                        Consumer.class,
+                                        String.class,
                                         "hello")),
                                 java0ArgsTest(
                                     "zQSFZH7I",
                                     "Return",
                                     CodeBlock.of(
-                                        "$T x = new $T<>(); $T y = x.get(0);",
-                                        List.class,
-                                        ArrayList.class,
+                                        "$T<$T> x = null; $T y = x.get();",
+                                        Supplier.class,
+                                        String.class,
                                         String.class))),
                             Stream.of());
                       }
