@@ -486,13 +486,26 @@ public class JavaTests {
                                     t -> {
                                       final ClassName nameA = t.name("InterfaceA");
                                       final ClassName nameB = t.name("ClassB");
-                                      t.interface_(nameA, c -> {})
+                                      t.interface_(
+                                              nameA,
+                                              c -> {
+                                                c.addModifiers(Modifier.PUBLIC);
+                                                c.addMethod(
+                                                    MethodSpec.methodBuilder("method")
+                                                        .addParameter(int.class, "argument")
+                                                        .build());
+                                              })
                                           .class_(
                                               nameB,
                                               c -> {
                                                 c.addSuperinterface(nameA);
                                                 c.addMethod(
                                                     MethodSpec.constructorBuilder().build());
+                                                c.addMethod(
+                                                    MethodSpec.methodBuilder("method")
+                                                        .addParameter(int.class, "argument")
+                                                        .addCode(CodeBlock.builder().build())
+                                                        .build());
                                               })
                                           .main(CodeBlock.of("new $T();", nameB));
                                     })
