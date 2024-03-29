@@ -491,6 +491,8 @@ public class JavaTests {
                                               c -> {
                                                 c.addMethod(
                                                     MethodSpec.methodBuilder("method")
+                                                        .addModifiers(
+                                                            Modifier.PUBLIC, Modifier.ABSTRACT)
                                                         .addParameter(int.class, "argument")
                                                         .build());
                                               })
@@ -502,6 +504,7 @@ public class JavaTests {
                                                     MethodSpec.constructorBuilder().build());
                                                 c.addMethod(
                                                     MethodSpec.methodBuilder("method")
+                                                        .addModifiers(Modifier.PUBLIC)
                                                         .addParameter(int.class, "argument")
                                                         .addCode(CodeBlock.builder().build())
                                                         .build());
