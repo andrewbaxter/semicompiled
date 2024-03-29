@@ -489,7 +489,6 @@ public class JavaTests {
                                       t.interface_(
                                               nameA,
                                               c -> {
-                                                c.addModifiers(Modifier.PUBLIC);
                                                 c.addMethod(
                                                     MethodSpec.methodBuilder("method")
                                                         .addParameter(int.class, "argument")
