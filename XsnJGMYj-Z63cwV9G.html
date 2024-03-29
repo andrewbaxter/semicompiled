@@ -4,8 +4,8 @@ hljs.initLineNumbersOnLoad();
 unsigned char myEntry(void)
 {
     return produce();
-}</code></pre></div><div class="pre-outer sc-output" data-output="LLVM IR" style="display: none;"><pre><code class="language-plaintext">; ModuleID = &apos;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.c&apos;
-source_filename = &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.c&quot;
+}</code></pre></div><div class="pre-outer sc-output" data-output="LLVM IR" style="display: none;"><pre><code class="language-plaintext">; ModuleID = &apos;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.c&apos;
+source_filename = &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.c&quot;
 target datalayout = &quot;e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128&quot;
 target triple = &quot;x86_64-pc-linux-gnu&quot;
 
@@ -25,8 +25,8 @@ attributes #1 = { &quot;correctly-rounded-divide-sqrt-fp-math&quot;=&quot;false&
 
 !0 = !{i32 1, !&quot;wchar_size&quot;, i32 4}
 !1 = !{!&quot;Debian clang version 11.0.1-2&quot;}
-</code></pre></div><div class="pre-outer sc-output" data-output="LLVM IR (debug)" style="display: none;"><pre><code class="language-plaintext">; ModuleID = &apos;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.c&apos;
-source_filename = &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.c&quot;
+</code></pre></div><div class="pre-outer sc-output" data-output="LLVM IR (debug)" style="display: none;"><pre><code class="language-plaintext">; ModuleID = &apos;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.c&apos;
+source_filename = &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.c&quot;
 target datalayout = &quot;e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128&quot;
 target triple = &quot;x86_64-pc-linux-gnu&quot;
 
@@ -46,14 +46,14 @@ attributes #1 = { &quot;correctly-rounded-divide-sqrt-fp-math&quot;=&quot;false&
 !llvm.ident = !{!6}
 
 !0 = distinct !DICompileUnit(language: DW_LANG_C99, file: !1, producer: &quot;Debian clang version 11.0.1-2&quot;, isOptimized: false, runtimeVersion: 0, emissionKind: FullDebug, enums: !2, splitDebugInlining: false, nameTableKind: None)
-!1 = !DIFile(filename: &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.c&quot;, directory: &quot;/__w/semicompiled/semicompiled&quot;)
+!1 = !DIFile(filename: &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.c&quot;, directory: &quot;/__w/semicompiled/semicompiled&quot;)
 !2 = !{}
 !3 = !{i32 7, !&quot;Dwarf Version&quot;, i32 4}
 !4 = !{i32 2, !&quot;Debug Info Version&quot;, i32 3}
 !5 = !{i32 1, !&quot;wchar_size&quot;, i32 4}
 !6 = !{!&quot;Debian clang version 11.0.1-2&quot;}
 !7 = distinct !DISubprogram(name: &quot;myEntry&quot;, scope: !8, file: !8, line: 2, type: !9, scopeLine: 3, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
-!8 = !DIFile(filename: &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.c&quot;, directory: &quot;&quot;)
+!8 = !DIFile(filename: &quot;/tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.c&quot;, directory: &quot;&quot;)
 !9 = !DISubroutineType(types: !10)
 !10 = !{!11}
 !11 = !DIBasicType(name: &quot;unsigned char&quot;, size: 8, encoding: DW_ATE_unsigned_char)
@@ -89,14 +89,14 @@ attributes #1 = { &quot;correctly-rounded-divide-sqrt-fp-math&quot;=&quot;false&
   (export &quot;myEntry&quot; (func 3))
   (export &quot;__dso_handle&quot; (global 3)))
 </code></pre></div><div class="pre-outer sc-output" data-output="eBPF (objdump)" style="display: none;"><pre><code class="language-plaintext">
-/tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.o:	file format elf64-bpf
+/tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.o:	file format elf64-bpf
 
 
 Disassembly of section .text:
 
 0000000000000000 &lt;myEntry&gt;:
 ; myEntry():
-; /tmp/semicompiled-XsnJGMYj-Z63cwV9G-10030279532137074654/source.c:4
+; /tmp/semicompiled-XsnJGMYj-Z63cwV9G-3618061064903398681/source.c:4
 ;     return produce();
        0:	call -1
        1:	exit

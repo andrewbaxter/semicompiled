@@ -9,8 +9,8 @@ class Main {
     new ClassB();
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-15964505950193809329/com/zarbosoft/semicompiled/Main.class
-  Last modified Apr 23, 2023; size 294 bytes
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-6997981513579686214/com/zarbosoft/semicompiled/Main.class
+  Last modified Mar 29, 2024; size 294 bytes
   MD5 checksum 226dabfa4046142aff6c44a9667d6ea1
 class com.zarbosoft.semicompiled.Main
   minor version: 0
@@ -118,8 +118,8 @@ public class MainDump implements Opcodes {
     return classWriter.toByteArray();
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-15964505950193809329/com/zarbosoft/semicompiled/Main.class
-  Last modified Apr 23, 2023; size 495 bytes
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-6997981513579686214/com/zarbosoft/semicompiled/Main.class
+  Last modified Mar 29, 2024; size 495 bytes
   MD5 checksum 5d40977ea9e53ded77240947a1391941
   Compiled from &quot;Main.java&quot;
 class com.zarbosoft.semicompiled.Main
@@ -267,23 +267,35 @@ public class MainDump implements Opcodes {
 }
 </code></pre></div></div><div class="sep"></div><div class="section"><span class="section-title">InterfaceA.java</span><div class="tabs"><a class="sc-output-button" href="#Source" data-output="Source">Source</a><div class="sep"></div><a class="sc-output-button" href="#Bytecode" data-output="Bytecode">Bytecode</a><div class="sep"></div><a class="sc-output-button" href="#ASMifier" data-output="ASMifier">ASMifier</a><div class="sep"></div><a class="sc-output-button" href="#Bytecode (debug)" data-output="Bytecode (debug)">Bytecode (debug)</a><div class="sep"></div><a class="sc-output-button" href="#ASMifier (debug)" data-output="ASMifier (debug)">ASMifier (debug)</a></div><div class="section-gap"></div><div class="pre-outer sc-output" data-output="Source" style="display: none;"><pre><code class="language-java">package com.zarbosoft.semicompiled;
 
-interface InterfaceA {}
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-15964505950193809329/com/zarbosoft/semicompiled/InterfaceA.class
-  Last modified Apr 23, 2023; size 89 bytes
-  MD5 checksum da962c71dd54e182d4906c737f7308b4
+interface InterfaceA {
+  void method(int argument);
+}
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-6997981513579686214/com/zarbosoft/semicompiled/InterfaceA.class
+  Last modified Mar 29, 2024; size 154 bytes
+  MD5 checksum 41d76420bc0e757ca97bfb0e54bc0083
 interface com.zarbosoft.semicompiled.InterfaceA
   minor version: 0
   major version: 52
   flags: (0x0600) ACC_INTERFACE, ACC_ABSTRACT
   this_class: #1                          // com/zarbosoft/semicompiled/InterfaceA
   super_class: #2                         // java/lang/Object
-  interfaces: 0, fields: 0, methods: 0, attributes: 0
+  interfaces: 0, fields: 0, methods: 1, attributes: 0
 Constant pool:
-  #1 = Class              #3              // com/zarbosoft/semicompiled/InterfaceA
-  #2 = Class              #4              // java/lang/Object
-  #3 = Utf8               com/zarbosoft/semicompiled/InterfaceA
-  #4 = Utf8               java/lang/Object
+  #1 = Class              #7              // com/zarbosoft/semicompiled/InterfaceA
+  #2 = Class              #8              // java/lang/Object
+  #3 = Utf8               method
+  #4 = Utf8               (I)V
+  #5 = Utf8               MethodParameters
+  #6 = Utf8               argument
+  #7 = Utf8               com/zarbosoft/semicompiled/InterfaceA
+  #8 = Utf8               java/lang/Object
 {
+  public abstract void method(int);
+    descriptor: (I)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    MethodParameters:
+      Name                           Flags
+      argument
 }
 </code></pre></div><div class="pre-outer sc-output" data-output="ASMifier" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
 
@@ -319,14 +331,20 @@ public class InterfaceADump implements Opcodes {
         &quot;java/lang/Object&quot;,
         null);
 
+    {
+      methodVisitor =
+          classWriter.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, &quot;method&quot;, &quot;(I)V&quot;, null, null);
+      methodVisitor.visitParameter(&quot;argument&quot;, 0);
+      methodVisitor.visitEnd();
+    }
     classWriter.visitEnd();
 
     return classWriter.toByteArray();
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-15964505950193809329/com/zarbosoft/semicompiled/InterfaceA.class
-  Last modified Apr 23, 2023; size 128 bytes
-  MD5 checksum f02cea16247abeffdf8297d90e8b8b14
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-6997981513579686214/com/zarbosoft/semicompiled/InterfaceA.class
+  Last modified Mar 29, 2024; size 193 bytes
+  MD5 checksum 236d1ca4aa73969334a3726a3f45ec2f
   Compiled from &quot;InterfaceA.java&quot;
 interface com.zarbosoft.semicompiled.InterfaceA
   minor version: 0
@@ -334,15 +352,25 @@ interface com.zarbosoft.semicompiled.InterfaceA
   flags: (0x0600) ACC_INTERFACE, ACC_ABSTRACT
   this_class: #1                          // com/zarbosoft/semicompiled/InterfaceA
   super_class: #2                         // java/lang/Object
-  interfaces: 0, fields: 0, methods: 0, attributes: 1
+  interfaces: 0, fields: 0, methods: 1, attributes: 1
 Constant pool:
-  #1 = Class              #5              // com/zarbosoft/semicompiled/InterfaceA
-  #2 = Class              #6              // java/lang/Object
-  #3 = Utf8               SourceFile
-  #4 = Utf8               InterfaceA.java
-  #5 = Utf8               com/zarbosoft/semicompiled/InterfaceA
-  #6 = Utf8               java/lang/Object
+   #1 = Class              #9             // com/zarbosoft/semicompiled/InterfaceA
+   #2 = Class              #10            // java/lang/Object
+   #3 = Utf8               method
+   #4 = Utf8               (I)V
+   #5 = Utf8               MethodParameters
+   #6 = Utf8               argument
+   #7 = Utf8               SourceFile
+   #8 = Utf8               InterfaceA.java
+   #9 = Utf8               com/zarbosoft/semicompiled/InterfaceA
+  #10 = Utf8               java/lang/Object
 {
+  public abstract void method(int);
+    descriptor: (I)V
+    flags: (0x0401) ACC_PUBLIC, ACC_ABSTRACT
+    MethodParameters:
+      Name                           Flags
+      argument
 }
 SourceFile: &quot;InterfaceA.java&quot;
 </code></pre></div><div class="pre-outer sc-output" data-output="ASMifier (debug)" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
@@ -381,6 +409,12 @@ public class InterfaceADump implements Opcodes {
 
     classWriter.visitSource(&quot;InterfaceA.java&quot;, null);
 
+    {
+      methodVisitor =
+          classWriter.visitMethod(ACC_PUBLIC | ACC_ABSTRACT, &quot;method&quot;, &quot;(I)V&quot;, null, null);
+      methodVisitor.visitParameter(&quot;argument&quot;, 0);
+      methodVisitor.visitEnd();
+    }
     classWriter.visitEnd();
 
     return classWriter.toByteArray();
@@ -390,29 +424,35 @@ public class InterfaceADump implements Opcodes {
 
 class ClassB implements InterfaceA {
   ClassB() {}
+
+  public void method(int argument) {}
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-15964505950193809329/com/zarbosoft/semicompiled/ClassB.class
-  Last modified Apr 23, 2023; size 193 bytes
-  MD5 checksum 2bf17bacc4c9913f9fc904f225d3197e
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-6997981513579686214/com/zarbosoft/semicompiled/ClassB.class
+  Last modified Mar 29, 2024; size 277 bytes
+  MD5 checksum b556b8ef9fe1c580ccf042204b3b1f94
 class com.zarbosoft.semicompiled.ClassB implements com.zarbosoft.semicompiled.InterfaceA
   minor version: 0
   major version: 52
   flags: (0x0020) ACC_SUPER
   this_class: #2                          // com/zarbosoft/semicompiled/ClassB
   super_class: #3                         // java/lang/Object
-  interfaces: 1, fields: 0, methods: 1, attributes: 0
+  interfaces: 1, fields: 0, methods: 2, attributes: 0
 Constant pool:
-   #1 = Methodref          #3.#8          // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-   #2 = Class              #9             // com/zarbosoft/semicompiled/ClassB
-   #3 = Class              #10            // java/lang/Object
-   #4 = Class              #11            // com/zarbosoft/semicompiled/InterfaceA
+   #1 = Methodref          #3.#12         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Class              #13            // com/zarbosoft/semicompiled/ClassB
+   #3 = Class              #14            // java/lang/Object
+   #4 = Class              #15            // com/zarbosoft/semicompiled/InterfaceA
    #5 = Utf8               &lt;init&gt;
    #6 = Utf8               ()V
    #7 = Utf8               Code
-   #8 = NameAndType        #5:#6          // &quot;&lt;init&gt;&quot;:()V
-   #9 = Utf8               com/zarbosoft/semicompiled/ClassB
-  #10 = Utf8               java/lang/Object
-  #11 = Utf8               com/zarbosoft/semicompiled/InterfaceA
+   #8 = Utf8               method
+   #9 = Utf8               (I)V
+  #10 = Utf8               MethodParameters
+  #11 = Utf8               argument
+  #12 = NameAndType        #5:#6          // &quot;&lt;init&gt;&quot;:()V
+  #13 = Utf8               com/zarbosoft/semicompiled/ClassB
+  #14 = Utf8               java/lang/Object
+  #15 = Utf8               com/zarbosoft/semicompiled/InterfaceA
 {
   com.zarbosoft.semicompiled.ClassB();
     descriptor: ()V
@@ -422,6 +462,16 @@ Constant pool:
          0: aload_0
          1: invokespecial #1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V
          4: return
+
+  public void method(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=2, args_size=2
+         0: return
+    MethodParameters:
+      Name                           Flags
+      argument
 }
 </code></pre></div><div class="pre-outer sc-output" data-output="ASMifier" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
 
@@ -466,14 +516,22 @@ public class ClassBDump implements Opcodes {
       methodVisitor.visitMaxs(1, 1);
       methodVisitor.visitEnd();
     }
+    {
+      methodVisitor = classWriter.visitMethod(ACC_PUBLIC, &quot;method&quot;, &quot;(I)V&quot;, null, null);
+      methodVisitor.visitParameter(&quot;argument&quot;, 0);
+      methodVisitor.visitCode();
+      methodVisitor.visitInsn(RETURN);
+      methodVisitor.visitMaxs(0, 2);
+      methodVisitor.visitEnd();
+    }
     classWriter.visitEnd();
 
     return classWriter.toByteArray();
   }
 }
-</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-15964505950193809329/com/zarbosoft/semicompiled/ClassB.class
-  Last modified Apr 23, 2023; size 346 bytes
-  MD5 checksum ce0c98aa3be9a9e122fc2a456e09f90d
+</code></pre></div><div class="pre-outer sc-output" data-output="Bytecode (debug)" style="display: none;"><pre><code class="language-plaintext">Classfile /tmp/semicompiled-jf7PB19D-6997981513579686214/com/zarbosoft/semicompiled/ClassB.class
+  Last modified Mar 29, 2024; size 474 bytes
+  MD5 checksum fda254a7aa9cf2d31c23277d865b26b7
   Compiled from &quot;ClassB.java&quot;
 class com.zarbosoft.semicompiled.ClassB implements com.zarbosoft.semicompiled.InterfaceA
   minor version: 0
@@ -481,12 +539,12 @@ class com.zarbosoft.semicompiled.ClassB implements com.zarbosoft.semicompiled.In
   flags: (0x0020) ACC_SUPER
   this_class: #2                          // com/zarbosoft/semicompiled/ClassB
   super_class: #3                         // java/lang/Object
-  interfaces: 1, fields: 0, methods: 1, attributes: 1
+  interfaces: 1, fields: 0, methods: 2, attributes: 1
 Constant pool:
-   #1 = Methodref          #3.#14         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
-   #2 = Class              #15            // com/zarbosoft/semicompiled/ClassB
-   #3 = Class              #16            // java/lang/Object
-   #4 = Class              #17            // com/zarbosoft/semicompiled/InterfaceA
+   #1 = Methodref          #3.#19         // java/lang/Object.&quot;&lt;init&gt;&quot;:()V
+   #2 = Class              #20            // com/zarbosoft/semicompiled/ClassB
+   #3 = Class              #21            // java/lang/Object
+   #4 = Class              #22            // com/zarbosoft/semicompiled/InterfaceA
    #5 = Utf8               &lt;init&gt;
    #6 = Utf8               ()V
    #7 = Utf8               Code
@@ -494,12 +552,17 @@ Constant pool:
    #9 = Utf8               LocalVariableTable
   #10 = Utf8               this
   #11 = Utf8               Lcom/zarbosoft/semicompiled/ClassB;
-  #12 = Utf8               SourceFile
-  #13 = Utf8               ClassB.java
-  #14 = NameAndType        #5:#6          // &quot;&lt;init&gt;&quot;:()V
-  #15 = Utf8               com/zarbosoft/semicompiled/ClassB
-  #16 = Utf8               java/lang/Object
-  #17 = Utf8               com/zarbosoft/semicompiled/InterfaceA
+  #12 = Utf8               method
+  #13 = Utf8               (I)V
+  #14 = Utf8               argument
+  #15 = Utf8               I
+  #16 = Utf8               MethodParameters
+  #17 = Utf8               SourceFile
+  #18 = Utf8               ClassB.java
+  #19 = NameAndType        #5:#6          // &quot;&lt;init&gt;&quot;:()V
+  #20 = Utf8               com/zarbosoft/semicompiled/ClassB
+  #21 = Utf8               java/lang/Object
+  #22 = Utf8               com/zarbosoft/semicompiled/InterfaceA
 {
   com.zarbosoft.semicompiled.ClassB();
     descriptor: ()V
@@ -515,6 +578,22 @@ Constant pool:
       LocalVariableTable:
         Start  Length  Slot  Name   Signature
             0       5     0  this   Lcom/zarbosoft/semicompiled/ClassB;
+
+  public void method(int);
+    descriptor: (I)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=2, args_size=2
+         0: return
+      LineNumberTable:
+        line 8: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lcom/zarbosoft/semicompiled/ClassB;
+            0       1     1 argument   I
+    MethodParameters:
+      Name                           Flags
+      argument
 }
 SourceFile: &quot;ClassB.java&quot;
 </code></pre></div><div class="pre-outer sc-output" data-output="ASMifier (debug)" style="display: none;"><pre><code class="language-java">package asm.com.zarbosoft.semicompiled;
@@ -570,6 +649,22 @@ public class ClassBDump implements Opcodes {
       methodVisitor.visitLocalVariable(
           &quot;this&quot;, &quot;Lcom/zarbosoft/semicompiled/ClassB;&quot;, null, label0, label2, 0);
       methodVisitor.visitMaxs(1, 1);
+      methodVisitor.visitEnd();
+    }
+    {
+      methodVisitor = classWriter.visitMethod(ACC_PUBLIC, &quot;method&quot;, &quot;(I)V&quot;, null, null);
+      methodVisitor.visitParameter(&quot;argument&quot;, 0);
+      methodVisitor.visitCode();
+      Label label0 = new Label();
+      methodVisitor.visitLabel(label0);
+      methodVisitor.visitLineNumber(8, label0);
+      methodVisitor.visitInsn(RETURN);
+      Label label1 = new Label();
+      methodVisitor.visitLabel(label1);
+      methodVisitor.visitLocalVariable(
+          &quot;this&quot;, &quot;Lcom/zarbosoft/semicompiled/ClassB;&quot;, null, label0, label1, 0);
+      methodVisitor.visitLocalVariable(&quot;argument&quot;, &quot;I&quot;, null, label0, label1, 1);
+      methodVisitor.visitMaxs(0, 2);
       methodVisitor.visitEnd();
     }
     classWriter.visitEnd();
